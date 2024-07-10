@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('aktivnosts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('naziv');
-            $table->string('cena');
-            $table->string('opis');
+            $table->string('lokacija');
             $table->string('tip');
             $table->timestamps();
         });

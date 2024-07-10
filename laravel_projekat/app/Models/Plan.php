@@ -12,5 +12,12 @@ class Plan extends Model
     protected $filable =[
         'dan',
         'aktivnost',
-    ]
+    ];
+
+    public function aktivnost()
+    {
+        return $this->belongsTo(Aktivnost::class);
+        
+        
+    }
 }

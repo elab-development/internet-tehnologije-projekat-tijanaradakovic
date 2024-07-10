@@ -9,8 +9,19 @@ class Plan extends Model
 {
     use HasFactory;
 
-    protected $filable =[
+    protected $fillable =[
         'dan',
         'aktivnost',
-    ]
+    ];
+
+    public function aktivnosts()
+    {
+        return $this->hasMany(Aktivnost::class);
+        
+        
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

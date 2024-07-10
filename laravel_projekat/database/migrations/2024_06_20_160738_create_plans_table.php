@@ -12,9 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('plans', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id('id');
             $table->integer('dan');
             $table->string('aktivnost');
+            $table->foreignId('user_id');
+           
+            $table->foreignId('putovanje_id');
             $table->timestamps();
         });
     }

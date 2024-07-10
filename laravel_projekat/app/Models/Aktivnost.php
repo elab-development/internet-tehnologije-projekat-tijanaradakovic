@@ -8,11 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Aktivnost extends Model
 {
     use HasFactory;
-    protected $filable = [
+    protected $fillable = [
         'naziv',
         'lokacija',
         'tip',
-        'opis',
-        'cenaAktivnosti',
+        
+         
     ];
+
+    public function plans()
+    {
+        return $this->belongsToMany(Plan::class);
+    }
+    public function putovanjes()
+    {
+        return $this->belongsTo(Putovanje::class);
+    }
+    public function users()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

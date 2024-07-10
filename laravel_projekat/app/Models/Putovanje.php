@@ -8,10 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Putovanje extends Model
 {
     use HasFactory;
-    protected $filable = [
+    protected $fillable = [
         'destinacija',
         'datumPolaska',
         'datumDolaska',
         'cena',
     ];
+    public function plans()
+    {
+        return $this->hasMany(Plan::class);
+    }
 }
+

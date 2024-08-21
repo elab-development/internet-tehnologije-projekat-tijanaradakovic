@@ -14,6 +14,7 @@ class Plan extends Model
         'aktivnost',
     ];
 
+<<<<<<< HEAD
     public function aktivnosts()
     {
         return $this->hasMany(Aktivnost::class);
@@ -24,4 +25,12 @@ class Plan extends Model
     {
         return $this->belongsTo(User::class);
     }
+=======
+    public function aktivnost()
+    {
+        return $this->belongsTo(Aktivnost::class);
+        
+        
+    }
+>>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 }

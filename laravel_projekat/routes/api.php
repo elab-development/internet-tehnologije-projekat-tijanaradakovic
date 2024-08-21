@@ -1,7 +1,13 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 <?php
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+<<<<<<< HEAD
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PutovanjeController; 
 use App\Http\Controllers\AktivnostController; 
@@ -26,7 +32,18 @@ Route::delete('/putovanje/{id}',[PutovanjeController::class,'destroy']);
 
 
 //REST API
+=======
+
+
+
+>>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 
 
 
 
+<<<<<<< HEAD
+=======
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+>>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004

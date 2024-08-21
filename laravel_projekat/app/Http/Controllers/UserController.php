@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\User;
-=======
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $users = User::all();
-        return response()->json($users);
+        //
     }
 
     /**
@@ -39,15 +34,9 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($user_id)
+    public function show(User $user)
     {
-        $user = User::find($user_id);
-        if(is_null($user))
-            return response()->json('Data not found',404);
-        return response()->json($user);
-
-
-        
+        //
     }
 
     /**
@@ -73,7 +62,4 @@ class UserController extends Controller
     {
         //
     }
-=======
-    //
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 }

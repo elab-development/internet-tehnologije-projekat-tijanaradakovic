@@ -12,8 +12,8 @@ class PutovanjeController extends Controller
      */
     public function index()
     {
-        $putovanja = Putovanja::all();
-        return $putovanja;
+        $putovanja = Putovanje::all();
+        return response()->json($putovanja);
     }
 
     /**
@@ -29,7 +29,14 @@ class PutovanjeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $putovanje = new Putovanje();
+        $putovanje->destinacija = $request->destinacija;
+        $putovanje->datumPolaska = $request->datumPolaska;
+        $putovanje->datumDolaska = $request->datumDolaska;
+
+        $putovanje->save();
+
+        //return redirect()->with('success','Putovanje uspesno kreirano');
     }
 
     /**
@@ -59,8 +66,9 @@ class PutovanjeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Putovanje $putovanje)
+    public function destroy($id)
     {
-        //
+        $putovanje=Putovanje::find($id);
+        $putovanje->delete();
     }
 }

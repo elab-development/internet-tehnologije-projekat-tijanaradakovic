@@ -1,21 +1,32 @@
-
-
 <?php
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\UserController;
-use App\Http\Controller\PutovanjeController;
+use App\Http\Controllers\PutovanjeController; 
+use App\Http\Controllers\AktivnostController; 
+use App\Http\Controllers\PlanController; 
 
-
-
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('/user', function (Request $request) {
     return $request->user();
-});
+})->middleware('auth:sanctum');
 
-Route::get('/users', [UserController::class,'index']);
-Route::get('/users/{id}', [UserController::class,'show']);
+Route::get('/users', [UserController::class,'index']); //uradjeno
+Route::get('/putovanjes', [PutovanjeController::class,'index']); //uradjeno
+//Route::get('/aktivnosts', [AktivnostController::class,'index']);
+Route::get('/plans', [PlanController::class,'index']); //uradjeno
 
-Route::get('/putovanja', [PutovanjeController::class,'index']);
+Route::resource('aktivnosts',AktivnostController::class);
+
+Route::post('login',[LoginController::class,'login']);
+
+Route::post('putovanje',[PutovanjeController::class,'store']); //uradjeno
+Route::put('plan/{plan}',[PlanController::class,'update']);
+Route::delete('/putovanje/{id}',[PutovanjeController::class,'destroy']); 
+
+
+//REST API
+
+
+
+

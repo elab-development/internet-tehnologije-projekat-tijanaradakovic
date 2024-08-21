@@ -2,7 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PutovanjeController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Route::get('/users', [UserController::class,'index']);
+// Route::get('/users/{id}', [UserController::class,'show']);
+
+// Route::get('/putovanja', [PutovanjeController::class,'index']);
+
 

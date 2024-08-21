@@ -12,7 +12,7 @@ class Putovanje extends Model
         'destinacija',
         'datumPolaska',
         'datumDolaska',
-        'cena',
+        
     ];
     public function plans()
     {

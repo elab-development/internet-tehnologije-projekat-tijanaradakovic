@@ -7,6 +7,7 @@ use App\Http\Controllers\PutovanjeController;
 use App\Http\Controllers\AktivnostController; 
 use App\Http\Controllers\PlanController; 
 use App\Http\Controllers\Auth\LoginController; 
+ 
 
 Route::get('/user', function (Request $request) {
     return $request->user();

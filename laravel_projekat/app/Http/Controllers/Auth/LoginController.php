@@ -19,7 +19,7 @@ class LoginController extends Controller
         $validator = Validator::make($request->all(),[
             'name'=>'required|string|max:255',
             'email'=>'required|string|email|max:255|unique:users',
-            'password'=> 'required|string|min:8|confirmed',
+            'password'=> 'required|string|min:8',
         ]);
 
         if($validator->fails()){
@@ -33,14 +33,23 @@ class LoginController extends Controller
             'password' => Hash::make($request->password),
         ]);
         
-        $token =$user->createToken('auth_token')->plainTextToken;
+        if (method_exists($user, 'createToken')) {
+            $token = $user->createToken('auth_token')->plainTextToken;
+        } else {
+            return response()->json(['message' => 'Method createToken not found'], 500);
+        }
+       // $token =$user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message' => 'Korisnik uspesno registrovan']);
+        return response()->json(['message' => 'Korisnik uspesno registrovan','data'=>$user,'token'=>$token,'password'=>$request->password]);
 
     }
     public function login(Request $request)
 
     {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
         
         if(!Auth::attempt($request->only('email','password')))
         {
@@ -48,7 +57,7 @@ class LoginController extends Controller
         }
         $user = User::where('email',$request['email'])->firstOrFail();
 
-       // $token =$user->createToken('auth_token')->plainTextToken;
+        $token =$user->createToken('auth_token')->plainTextToken;
 
 
         return response()->json(['message'=>'Uspesno ste se prijavili']);

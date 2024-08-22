@@ -6,7 +6,6 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
 {
-<<<<<<< HEAD
     /**
      * The application's global HTTP middleware stack.
      *
@@ -16,10 +15,6 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
-=======
-    protected $middleware = [
-        \App\Http\Middleware\TrustHosts::class,
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
         \App\Http\Middleware\TrustProxies::class,
         \Illuminate\Http\Middleware\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -28,36 +23,29 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
     ];
 
-<<<<<<< HEAD
     /**
      * The application's route middleware groups.
      *
      * @var array
      */
-=======
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
     protected $middlewareGroups = [
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-<<<<<<< HEAD
             // \Illuminate\Session\Middleware\AuthenticateSession::class,
-=======
-            \Illuminate\Session\Middleware\AuthenticateSession::class,
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
         'api' => [
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
     ];
 
-<<<<<<< HEAD
     /**
      * The application's route middleware.
      *
@@ -65,8 +53,6 @@ class Kernel extends HttpKernel
      *
      * @var array
      */
-=======
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,

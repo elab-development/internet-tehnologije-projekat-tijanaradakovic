@@ -20,6 +20,8 @@ Route::get('/plans', [PlanController::class,'index']); //uradjeno
 Route::resource('aktivnosts',AktivnostController::class);
 
 Route::post('login',[LoginController::class,'login']);
+Route::post('register',[LoginController::class,'register']);
+
 
 Route::post('putovanje',[PutovanjeController::class,'store']); //uradjeno
 Route::put('plan/{plan}',[PlanController::class,'update']);

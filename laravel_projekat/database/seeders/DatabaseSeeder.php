@@ -6,14 +6,11 @@ use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-<<<<<<< HEAD
 use App\Models\Aktivnost;
 use App\Models\Plan;
 use App\Models\Putovanje;
 use Carbon\Carbon;
 
-=======
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 
 
 class DatabaseSeeder extends Seeder
@@ -39,17 +36,5 @@ class DatabaseSeeder extends Seeder
        // $this->call(AktivnostSeeder::class);
 
 
-<<<<<<< HEAD
-=======
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
-        //$this->call(PutovanjeSeeder::class);
-        //$this->call(PlanSeeder::class);
-        $this->call(AktivnostSeeder::class);
-
-
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
     }
 }

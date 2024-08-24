@@ -30,17 +30,13 @@ class LoginController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' =>Hash::make($request->password),
         ]);
         
-        if (method_exists($user, 'createToken')) {
-            $token = $user->createToken('auth_token')->plainTextToken;
-        } else {
-            return response()->json(['message' => 'Method createToken not found'], 500);
-        }
-       // $token =$user->createToken('auth_token')->plainTextToken;
+       
+        $token =$user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message' => 'Korisnik uspesno registrovan','data'=>$user,'token'=>$token,'password'=>$request->password]);
+        return response()->json(['message' => 'Korisnik uspesno registrovan','data'=>$user]);
 
     }
     public function login(Request $request)
@@ -53,16 +49,21 @@ class LoginController extends Controller
         
         if(!Auth::attempt($request->only('email','password')))
         {
-            return response()->json(['message'=>'Unauthorized']);
+            return response()->json(['message'=>'Unauthorized'],401);
         }
         $user = User::where('email',$request['email'])->firstOrFail();
 
         $token =$user->createToken('auth_token')->plainTextToken;
 
 
-        return response()->json(['message'=>'Uspesno ste se prijavili']);
+        return response()->json(['message'=>'Zdravo '.$user->name.' dobrodosli na home stranicu ','access_token'=>$token,'token_type'=>'Bearer']);
        
     
 
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }

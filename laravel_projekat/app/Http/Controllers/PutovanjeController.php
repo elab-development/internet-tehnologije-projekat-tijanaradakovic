@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Putovanje;
-=======
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 use Illuminate\Http\Request;
 
 class PutovanjeController extends Controller
 {
-<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      */
@@ -75,7 +71,4 @@ class PutovanjeController extends Controller
         $putovanje=Putovanje::find($id);
         $putovanje->delete();
     }
-=======
-    //
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 }

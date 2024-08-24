@@ -14,6 +14,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/users', [UserController::class,'index']); //uradjeno
+Route::get('/users/{id}', [UserController::class,'show']); //uradjeno
 Route::get('/putovanjes', [PutovanjeController::class,'index']); //uradjeno
 //Route::get('/aktivnosts', [AktivnostController::class,'index']);
 Route::get('/plans', [PlanController::class,'index']); //uradjeno
@@ -22,6 +23,7 @@ Route::resource('aktivnosts',AktivnostController::class);
 
 Route::post('login',[LoginController::class,'login']);
 Route::post('register',[LoginController::class,'register']);
+Route::post('logout',[LoginController::class,'logout']);
 
 
 Route::post('putovanje',[PutovanjeController::class,'store']); //uradjeno

@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
-use App\Models\Aktivnost;
-=======
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 use Illuminate\Http\Request;
 
 class AktivnostController extends Controller
 {
-<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      */
@@ -38,7 +33,7 @@ class AktivnostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Aktivnost $aktivnost)
+    public function show(string $id)
     {
         //
     }
@@ -46,7 +41,7 @@ class AktivnostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Aktivnost $aktivnost)
+    public function edit(string $id)
     {
         //
     }
@@ -54,7 +49,7 @@ class AktivnostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Aktivnost $aktivnost)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -62,11 +57,8 @@ class AktivnostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Aktivnost $aktivnost)
+    public function destroy(string $id)
     {
         //
     }
-=======
-    //
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 }

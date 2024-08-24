@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\Models\Plan;
-=======
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
 {
-<<<<<<< HEAD
     /**
      * Display a listing of the resource.
      */
@@ -66,7 +62,4 @@ class PlanController extends Controller
     {
         //
     }
-=======
-    //
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 }

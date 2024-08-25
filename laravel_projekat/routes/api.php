@@ -19,16 +19,23 @@ Route::get('/putovanjes', [PutovanjeController::class,'index']); //uradjeno
 //Route::get('/aktivnosts', [AktivnostController::class,'index']);
 Route::get('/plans', [PlanController::class,'index']); //uradjeno
 
-Route::resource('aktivnosts',AktivnostController::class);
+Route::resource('aktivnosts',AktivnostController::class)->only('show','index');
+Route::post('register',[LoginController::class,'register']);
 
 Route::post('login',[LoginController::class,'login']);
-Route::post('register',[LoginController::class,'register']);
-Route::post('logout',[LoginController::class,'logout']);
+Route::group(['middleware'=>['auth:sanctum']],function (){
+    Route::get('/profile', function (Request $request){
+        return auth()->user();
+    });
+    Route::post('putovanje',[PutovanjeController::class,'store']); //uradjeno
+    Route::put('plan/{plan}',[PlanController::class,'update']);
+    Route::delete('/putovanje/{id}',[PutovanjeController::class,'destroy']); 
+    Route::resource('aktivnosts',AktivnostController::class)->only('destroy','store');
 
+    Route::post('logout',[LoginController::class,'logout']);
 
-Route::post('putovanje',[PutovanjeController::class,'store']); //uradjeno
-Route::put('plan/{plan}',[PlanController::class,'update']);
-Route::delete('/putovanje/{id}',[PutovanjeController::class,'destroy']); 
+});
+
 
 
 //REST API

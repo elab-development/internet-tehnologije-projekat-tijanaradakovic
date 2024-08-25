@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('destinacija');
             $table->date('datumPolaska');
             $table->date('datumDolaska');
+            $table->integer('brojDana');
             $table->timestamps();
         });
     }

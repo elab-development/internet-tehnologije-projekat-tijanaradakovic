@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('putovanjes', function (Blueprint $table) {
-            $table->dropColumn('brojDana');
+        Schema::create('activities', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('naziv');
+            $table->string('lokacija');
+            $table->timestamps();
         });
     }
 
@@ -21,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('putovanjes', function (Blueprint $table) {
-            $table->integer('brojDana');
-        });
+        Schema::dropIfExists('activities');
     }
 };

@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plan_aktivnost', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('plan_id')->constrained()->onDelete('cascade');
-            $table->foreignId('aktivnost_id')->constrained()->onDelete('cascade');
+        Schema::create('trips', function (Blueprint $table) {
+            $table->id('id');
+            $table->string('destinacija');
+            $table->date('datumPolaska');
+            $table->date('datumDolaska');
+            $table->integer('brojDana');
             $table->timestamps();
         });
     }
@@ -22,8 +24,9 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
+    
     public function down(): void
     {
-        Schema::dropIfExists('plan_aktivnost');
+        Schema::dropIfExists('trips');
     }
 };

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('plans', function (Blueprint $table) {
             $table->id('id');
             $table->integer('dan');
-            $table->string('aktivnost');
+            //$table->foreignId('aktivnost_id');
             $table->foreignId('user_id');
            
             $table->foreignId('putovanje_id');

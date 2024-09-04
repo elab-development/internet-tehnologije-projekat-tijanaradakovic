@@ -14,14 +14,14 @@ class AktivnostSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('aktivnosts')->insert([
+        DB::table('activities')->insert([
 
            ['naziv'=> 'Obilazak Koloseuma',
-            'lokacija'=> 'Rim',
+            'destinacija'=> 'Rim',
             'tip' => 'kultura',
             ],
             ['naziv'=> 'Obilazak Vatikana',
-            'lokacija'=>'Rim',
+            'destinacija'=>'Rim',
             'tip'=>'kultura',
         ]
     ]);

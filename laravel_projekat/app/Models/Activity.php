@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Aktivnost extends Model
+class Activity extends Model
 {
+
     use HasFactory;
+    protected $table = 'activities';
     protected $fillable = [
         'naziv',
         'lokacija',
@@ -18,14 +20,8 @@ class Aktivnost extends Model
 
     public function plans()
     {
-        return $this->belongsToMany(Plan::class);
+        return $this->belongsToMany(Plan::class,'plan_activity');
     }
-    public function putovanjes()
-    {
-        return $this->belongsTo(Putovanje::class);
-    }
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
+    
+    
 }

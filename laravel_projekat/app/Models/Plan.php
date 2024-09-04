@@ -11,26 +11,21 @@ class Plan extends Model
 
     protected $fillable =[
         'dan',
-        'aktivnost',
+        //'aktivnost',
     ];
 
-<<<<<<< HEAD
-    public function aktivnosts()
+    public function activities()
     {
-        return $this->hasMany(Aktivnost::class);
+        return $this->belongsToMany(Activity::class,'plan_activity');
         
         
+    }
+    public function trips()
+    {
+        return $this->belongsTo(Trip::class);
     }
     public function users()
     {
         return $this->belongsTo(User::class);
     }
-=======
-    public function aktivnost()
-    {
-        return $this->belongsTo(Aktivnost::class);
-        
-        
-    }
->>>>>>> 6dde6a648998229c17154e1b752db4e1c246e004
 }

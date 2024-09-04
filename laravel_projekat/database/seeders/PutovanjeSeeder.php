@@ -19,7 +19,7 @@ class PutovanjeSeeder extends Seeder
     {
         $datumDolaska = Carbon::createFromFormat('d.m.Y', '27.07.2024')->format('Y-m-d');
         $datumPolaska = Carbon::createFromFormat('d.m.Y', '23.07.2024')->format('Y-m-d');
-        DB::table('putovanjes')->insert([
+        DB::table('putovanje')->insert([
             ['destinacija'=> 'Rim',
             'datumPolaska'=> $datumPolaska,
             'datumDolaska'=> $datumDolaska,

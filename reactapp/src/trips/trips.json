@@ -1,0 +1,62 @@
+[
+    {
+      "id": 1,
+      "naziv": "Atina",
+      "picture": "atina.jpg",
+      "opis": "Najstariji savremeni grad na svetu, kolevka demokratije, filozofije i Olimpijskih igara, bezbroj antičkih tvorevina i umetničkih dela, mesto gde se bogata istorija susreće sa modernom Atinom, velikim, kosmopolitskim gradom, uzbudljivog noćnog života, dobrog šopinga i slasne mediteranske kuhinje.",
+      "datum_polaska": "23.04.2025.",
+      "datum_dolaska": "27.04.2025.",
+      "aktivnosti": [
+        {
+          "aktivnost_id": 1,
+          "naziv_aktivnosti": "Obilazak Partenona"
+          
+        },
+        {
+          "aktivnost_id": 2,
+          "naziv_aktivnosti": "Nocna zurka"
+        }
+      ]
+    },
+    {
+     "id": 1,
+      "naziv": "Rim",
+      "picture": "rim.jpg",
+      "opis": "Rim je glavni grad Italije i regiona Lacio, ali i najveći i najbrojniji grad u Italiji sa oko 2,7 miliona stanovnika. Prema legendi, grad su osnovali Romul i Rem 21. aprila 753 godine p.n.e. pa sa pravom nosi ime VEČNI GRAD.",
+      "datum_polaska": "23.04.2025.",
+      "datum_dolaska": "27.04.2025.",
+      "aktivnosti": [
+        {
+          "aktivnost_id": 1,
+          "naziv_aktivnosti": "Obilazak Koloseuma"
+         
+        },
+        {
+           "aktivnost_id": 2,
+          "naziv_aktivnosti": "Vatikan"
+          
+        }
+      ]
+    },
+    {
+    "id": 3,
+      "naziv": "Istanbul",
+      "picture": "istanbul.png",
+      "opis": "Istanbul – grad koji leži na dva kontinenta, spoj istoka i zapada, Evrope i Azije, sa svojom raskošnom kulturnom ostavštinom, nikad ne prestaje da oduševljava. Uobličile su ga četiri snažne civilizacije: grčka, rimska, vizantijska i osmanlijska. Kroz istoriju je nosio različita imena: Vizantion, Novi Rim, Konstantinopolj, Carigrad i Istanbul. Danas je Istanbul velegrad, sa preko 13 miliona stanovnika koji žive i rade na dva kontinenta. Moderni Trg Taksim ili kvartovi Bejoglu i Osmanbej, će učiniti da se osećate kao u bilo kojoj svetskoj metropoli, dok ćete se šetajući Sultanahmet trgom neizbežno vratiti par stotina ili čak hiljada godina unazad. Novo i staro, Orijent i Evropa, islam i hrišćanstvo – nigde ih nećete naći ovako isprepletene i neraskidivo povezane kao u Istanbulu.",
+      "datum_polaska": "23.04.2025.",
+      "datum_dolaska": "27.04.2025.",
+      "aktivnosti": [
+        {
+          "aktivnost_id": 1,
+          "naziv_aktivnosti": "Obilazak Aje Sofije"
+         
+        },
+        {
+           "aktivnost_id": 2,
+          "naziv_aktivnosti": "Krstarenje Bosforom"
+        }
+      ]
+    }
+  ]
+  
+  

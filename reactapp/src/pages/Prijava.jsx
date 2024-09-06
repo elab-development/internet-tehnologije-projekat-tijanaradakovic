@@ -2,22 +2,36 @@ import React from 'react'
 import { useState } from 'react'
 import '../App.css';
 import { Link ,useNavigate} from 'react-router-dom';
+import TextField from '../components/shared/TextField';
 
-function Prijava() {
+
+function Prijava({users}) {
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
   function handleSubmit(e){
     e.preventDefault();
     if(!email || !password){
       setError("Email and password are required!");
       return;
     }
+    
+
     setError("");
-    console.log('Form data',{email,password});
-    navigate('/');
+    const nameExist = users.find(user => user.email ===email);
+    if(!nameExist){
+      console.log('ne postoji koristnik s atim imenom');
+    }
+    const passExist = users.find(user => user.password ===password);
+    if(passExist){
+      navigate('/');
+    }
+
+   
+    
+    //console.log('Form data',{email,password});
+    //navigate('/');
   
   }
   
@@ -29,29 +43,25 @@ function Prijava() {
     <div className="login-container">
       <form className='login-form' onSubmit={handleSubmit}>
       
-        <div className='form-control'>
+        <div className='form-group'>
           <label htmlFor='email'>Email</label>
-          <input
+          <TextField
                     type="text"
                     name="email"
                     id="email"
-                    className='form-control'
-                    style = {{marginLeft:'48px'}}
                     value ={email}
                     onChange={(e)=>setEmail(e.target.value)}
-                    required
+                    required= {true}
 
                 />
         </div>
 
-        <div className="form-control">
+        <div className="form-group">
           <label htmlFor='password'>Password</label>
-          <input
-                    type="text"
+          <TextField
+                    type="password"
                     name='password'
                     id='password'
-                    className='form-control'
-                    style ={{marginLeft:'20px'}}
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     required

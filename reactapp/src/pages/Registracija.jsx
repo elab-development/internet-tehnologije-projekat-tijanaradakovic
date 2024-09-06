@@ -1,7 +1,8 @@
 import React from 'react'
-import { useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { useState,useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import '../App.css';
+import TextField from '../components/shared/TextField';
 
 
 function Registracija() {
@@ -9,17 +10,23 @@ function Registracija() {
     const[password,setPassword] = useState("");
     const[name,setName] = useState("");
     const [error, setError] = useState("");
-  
+
     function handleSubmit(e){
         e.preventDefault();
-        if(!email || !password || name){
-        setError("Email, password and name are required!");
-        return;
+        if(!email || !password || !name){
+          setError("Email, password and name are required!");
+          return;
         }
+      
+         
         setError("");
-        console.log('Form data',{name,email,password});
+          
+        console.log('Uspesno ste se registrovali!');
+      }
+        
+        
   
-    }
+    
   
   
     
@@ -30,29 +37,24 @@ function Registracija() {
         </div>
       <div className="login-container">
         <form className='login-form' onSubmit={handleSubmit}>
-            <div className='form-control'>
+            <div className='form-group'>
             <label htmlFor='name'>Name</label>
-            <input
+            <TextField
             type="text"
             name="name"
             id="name"
-            style={{marginLeft:'40px'}}
-            className='form-control'
-
             value={name}
             onChange={(e)=> setName(e.target.value)}
             required
             />
             
         </div>
-          <div className='form-control'>
+          <div className='form-group'>
             <label htmlFor='email'>Email</label>
-            <input
+            <TextField
                       type="text"
                       name="email"
                       id="email"
-                      className='form-control'
-                      style = {{marginLeft:'48px'}}
                       value ={email}
                       onChange={(e)=>setEmail(e.target.value)}
                       required
@@ -60,21 +62,19 @@ function Registracija() {
                   />
           </div>
   
-          <div className="form-control">
+          <div className="form-group">
             <label htmlFor='password'>Password</label>
-            <input
-                      type="text"
+            <TextField
+                      type="password"
                       name='password'
                       id='password'
-                      className='form-control'
-                      style ={{marginLeft:'20px'}}
                       value={password}
                       onChange={(e)=>setPassword(e.target.value)}
                       required
   
                 />
           </div>
-          <button type='submit' className='login-button' style={{width:'100px', height:'40px'}}>Login</button>
+          <button type='submit' className='login-button' style={{width:'100px', height:'40px'}}>Register</button>
         </form>
         <div className='register-link'>Have an account?<Link to='/login'>Log in here</Link> </div>
        </div>

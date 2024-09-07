@@ -25,13 +25,12 @@ function Prijava({users}) {
     }
     const passExist = users.find(user => user.password ===password);
     if(passExist){
-      navigate('/');
+      navigate('/trips');
     }
 
    
     
-    //console.log('Form data',{email,password});
-    //navigate('/');
+    
   
   }
   

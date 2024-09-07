@@ -6,6 +6,7 @@
       "opis": "Najstariji savremeni grad na svetu, kolevka demokratije, filozofije i Olimpijskih igara, bezbroj antičkih tvorevina i umetničkih dela, mesto gde se bogata istorija susreće sa modernom Atinom, velikim, kosmopolitskim gradom, uzbudljivog noćnog života, dobrog šopinga i slasne mediteranske kuhinje.",
       "datum_polaska": "23.04.2025.",
       "datum_dolaska": "27.04.2025.",
+      "cena":"250e",
       "aktivnosti": [
         {
           "aktivnost_id": 1,
@@ -19,7 +20,7 @@
       ]
     },
     {
-     "id": 1,
+     "id": 2,
       "naziv": "Rim",
       "picture": "rim.jpg",
       "opis": "Rim je glavni grad Italije i regiona Lacio, ali i najveći i najbrojniji grad u Italiji sa oko 2,7 miliona stanovnika. Prema legendi, grad su osnovali Romul i Rem 21. aprila 753 godine p.n.e. pa sa pravom nosi ime VEČNI GRAD.",
@@ -56,7 +57,29 @@
           "naziv_aktivnosti": "Krstarenje Bosforom"
         }
       ]
-    }
+    },{
+      "id": 4,
+       "naziv": "Riga",
+       "picture": "riga.jpg",
+       "opis": "Riga je glavni grad i najveće gradsko naselje Letonije. Grad se nalazi blizu ušća reke Daugave u Baltičko more. Grad Riga čini i zasebnu opštinu u Letoniji. Najveći je grad u Baltičkim zemljama. Stari grad Rige nalazi se na Uneskovoj listi svetske baštine, jer ima najveću zbirku građevina u stilu secesije (jugendstila) u Evropi. Predeo oko grada je ravničarski i močvaran. Oko grada postoje i mnoga mala jezera ledničkog porekla, danas često u sklopu velikih gradskih parkova.",
+       "datum_polaska": "23.04.2025.",
+       "datum_dolaska": "27.04.2025.",
+       "aktivnosti": [
+        
+       ]
+     },{
+      "id": 5,
+       "naziv": "Barselona",
+       "picture": "barselona.jpg",
+       "opis": "Predstavljamo vam jedan od najposećenijih gradova u Evropi i najposećeniju turističku destinaciju u Španiji. Barselona je mesto čija arhitektura hiljadama godina oduševljava posetioce, ali koja nudi i obilje drugog turističkog sadržaja. Kako biste na pravi način istražili ponudu grada i sve njene atrakcije, za vas smo napravili kompletan turistički vodič kroz Barselonu. U njemu ćete pronaći sve turističke informacije o sadržajima, gradskim turama, restoranima, smeštajnim jedinicama, te otkriti savete koji će vam pomoći da za što manje novca uživate u kompletnoj gradskoj ponudi. Pripremite se za savršeno iskustvo! Pođite na put kroz najlepšu arhitekturu sveta.",
+       "datum_polaska": "23.04.2025.",
+       "datum_dolaska": "27.04.2025.",
+       "aktivnosti": [{
+          "aktivnost_id": 1,
+          "naziv_aktivnosti": "Park Guel"
+       }
+       ]
+     }
   ]
   
   

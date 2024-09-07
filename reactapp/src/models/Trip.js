@@ -1,7 +1,10 @@
 import React from 'react'
-import Activity from './Activity'
+import { Link } from 'react-router-dom'
+import { FaStar } from "react-icons/fa";
+import { useState } from 'react';
+const Trip =({trip,addFav,rmvFav})=> {
+  const [isFilled, setIsFilled] = useState(false);
 
-const Trip =({trip})=> {
   return (
     <>
     
@@ -11,12 +14,17 @@ const Trip =({trip})=> {
         <h3>{trip.naziv}</h3>
         <p>{trip.datum_polaska}-{trip.datum_dolaska} </p>
         <p>{trip.opis}</p>
-        <div className='activities'>
-        <h4>Aktivnosti:</h4>
-        {trip.aktivnosti.map(a =>
-        <Activity activities={a}key={a.aktivnost_id} />
-
-        )}
+        <Link
+            to={"/details/" + trip.id}
+            >
+         Details
+        </Link>
+        
+        
+          <div className={`star ${isFilled ? 'filled' : ''}`}
+         onClick={() => setIsFilled(!isFilled)} 
+    >
+          <FaStar onClick={()=>addFav(trip.id)}></FaStar>
         </div>
         
       </div>

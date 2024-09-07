@@ -91,32 +91,38 @@
 }
 .card{
   background-color: #f1e5ac;
-  margin-right: 250px;
-  margin-left: 250px;
+  margin-right: 300px;
+  margin-left: 300px;
   margin-top: 50px;
   border: 2px solid #282c34;
-  display: flex;
   flex-direction: row;
   border-radius: 10px;
+  display: flex;
+  
   
 }
 .card-body{
-  text-align: left;
   margin-left: 30px;
+  text-align: left;
+
+
+
+
+  
 }
+
+
 p {
   margin: 5px 0; 
 }
 img {
-  width: 100%; 
-  height: auto; 
+  width: 600px; 
+  height: 400px; 
 }
 h2{
   text-align: center;
 }
-/* .activities {
-  
-} */
+
 h4 {
   margin-top: 5px;
   margin-bottom: 5px;
@@ -129,5 +135,120 @@ h4 {
 .search{
   display: flex;
   flex-direction: row;
-  margin-left: 250px;
+  margin-left: 300px;
+  margin-right: 300px;
 }
+.footer{
+  margin-top: 30px;
+  background-color: gray;
+  padding: 10px;
+  text-align: center;
+}
+
+
+
+table {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%; /* Primer širine tabele */
+  margin-top: 50px;
+  
+}
+
+.page {
+  align-items: center;
+  border: 2px solid #282c34;
+  background-color: #f1e5ac;
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-top: 70px;
+}
+
+ .navbar {
+  background-color: gray;
+  padding: 1rem;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.nav-item {
+  margin-right: 1rem;
+}
+
+.nav-item a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  display: block;
+} 
+
+.nav-item a:hover {
+  background-color: #555;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  top: 100%;
+  left: 0;
+  min-width: 160px;
+}
+
+.dropdown-menu li {
+  border-bottom: 1px solid #444;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.dropdown-menu a {
+  padding: 0.5rem 1rem;
+  color: black;
+}
+
+.dropdown-menu a:hover {
+  background-color: #555;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+ 
+.sort{
+  margin-top: 30px;
+}
+button{
+  height: 50px;
+  width: 100px;
+}
+
+.star.filled {
+  color: gold;
+}
+.star{
+  transition: 0.3s;
+  margin-left: 800px;
+  padding: 5px;
+  font-size: 20px;
+
+}
+ .back-text{
+  
+  text-align: left;
+  padding: 0.5rem 1rem;
+
+ }

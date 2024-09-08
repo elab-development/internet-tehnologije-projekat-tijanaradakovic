@@ -13,7 +13,7 @@ const Details = () => {
       <div className='container'>
         
         <div className='back-text'>
-          <Link to="/" id="back-link" style={{ color: 'white', textDecoration: 'none', backgroundColor: 'grey', padding: '0.5rem 1rem' }}>
+          <Link to="/trips" id="back-link" style={{ color: 'white', textDecoration: 'none', backgroundColor: 'grey', padding: '0.5rem 1rem' }}>
             Back
           </Link>
         </div>

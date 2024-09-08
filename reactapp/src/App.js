@@ -7,10 +7,11 @@ import Trips from './trips/trips.json';
 import Users from './trips/users.json';
 import Details from './components/shared/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import TripPage from './pages/TripPage';
+import axios from 'axios';
 function App() {
-  
+ 
   return (
     <>
     <BrowserRouter>

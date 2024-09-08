@@ -6,13 +6,13 @@ function Pocetna() {
     <>
     <NavBar />
     <div className= 'container-home'>
-      <body>
+      
       <div className='home'>
 
       <h1>Welcome!</h1>
     
       </div>
-      </body>
+      
 
     </div>
     </>

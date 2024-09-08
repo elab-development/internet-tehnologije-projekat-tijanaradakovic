@@ -12,6 +12,7 @@ function Registracija() {
     const [error, setError] = useState("");
     const [data,setData]= useState([]);
 
+    
     function handleSubmit(e){
         e.preventDefault();
         if(!email || !password || !name
@@ -20,18 +21,20 @@ function Registracija() {
           console.log("ovde");
           return;
         }
-        
         setData({
-          'name':name,
-          'email':email,
+          'name': name,
+          'email': email,
           'password': password
-        }
-      )
+        });
+        
+        
+      
         setError("");
           
         alert('Uspesno ste se registrovali!');
+        console.log(data);
       }
-        
+    
         
   
     
@@ -86,6 +89,7 @@ function Registracija() {
           </div>
           <button type='submit' className='login-button' style={{width:'100px', height:'40px'}}>Register</button>
         </form>
+        {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className='register-link'>Have an account?<Link to='/login'>Log in here</Link> </div>
        </div>
        </div>

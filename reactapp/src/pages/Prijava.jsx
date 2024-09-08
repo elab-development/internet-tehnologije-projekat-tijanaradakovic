@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import '../App.css';
 import { Link ,useNavigate} from 'react-router-dom';
 import TextField from '../components/shared/TextField';
@@ -10,11 +10,21 @@ function Prijava({users}) {
   const[password,setPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  //const [loggedIn,setLoggedIn] = useState(false);
+
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     navigate('/trips');
+  //   }
+  // }, [loggedIn]);
+ 
+
+
+
   function handleSubmit(e){
     e.preventDefault();
     if(!email|| !password){
       setError("Email and password are required!");
-      alert("cap");
       return;
     }
     
@@ -27,7 +37,8 @@ function Prijava({users}) {
     }
     const passExist = users.find(user => user.password ===password);
     if(passExist){
-      navigate('/trips');
+     // setLoggedIn(true);
+     navigate('/trips');
     }
     else{
       alert('Netacna lozinka!');

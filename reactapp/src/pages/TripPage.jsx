@@ -1,10 +1,9 @@
 import React from 'react'
 import Trip from '../models/Trip'
-import { useState } from 'react'
+import { useState} from 'react'
 import Trips from '../trips/trips.json';
 import TextField from '../components/shared/TextField';
 import Footer from '../components/shared/Footer';
-import Header from '../components/shared/Header';
 import { FaGripLines } from "react-icons/fa";
 import SideBar from '../models/SideBar';
 import NavBar from '../components/NavBar';

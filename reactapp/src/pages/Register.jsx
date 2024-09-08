@@ -5,7 +5,7 @@ import '../App.css';
 import TextField from '../components/shared/TextField';
 import NavBar from '../components/NavBar';
 
-function Registracija() {
+function Register() {
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
     const[name,setName] = useState("");
@@ -98,4 +98,4 @@ function Registracija() {
   
 }
 
-export default Registracija
+export default Register

@@ -1,15 +1,13 @@
 import './App.css';
-import Pocetna from './pages/Pocetna';
+import Home from './pages/Home';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Prijava from './pages/Prijava';
-import Registracija from './pages/Registracija';
+import Login from './pages/Login';
+import Register from './pages/Register';
 import Trips from './trips/trips.json';
 import Users from './trips/users.json';
 import Details from './components/shared/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState,useEffect } from 'react';
 import TripPage from './pages/TripPage';
-import axios from 'axios';
 function App() {
  
   return (
@@ -19,10 +17,10 @@ function App() {
       
       <Routes>
      
-        <Route path="/" element={<Pocetna  />}/>
-        <Route path="/login" element={<Prijava users={Users}/>}/>
+        <Route path="/" element={<Home  />}/>
+        <Route path="/login" element={<Login users={Users}/>}/>
         <Route path= "/trips"element={<TripPage trips={Trips}/>}/>
-        <Route path="/register" element={<Registracija />}/>
+        <Route path="/register" element={<Register />}/>
         <Route
                 path="/details/:id"
                 element=

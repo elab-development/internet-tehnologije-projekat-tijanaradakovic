@@ -1,7 +1,7 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
 
-function Pocetna() {
+function Home() {
   return (
     <>
     <NavBar />
@@ -19,4 +19,4 @@ function Pocetna() {
   )
 }
 
-export default Pocetna
+export default Home

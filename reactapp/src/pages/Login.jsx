@@ -5,7 +5,7 @@ import { Link ,useNavigate} from 'react-router-dom';
 import TextField from '../components/shared/TextField';
 import NavBar from '../components/NavBar';
 
-function Prijava({users}) {
+function Login({users}) {
   const[email,setEmail] = useState("");
   const[password,setPassword] = useState("");
   const [error, setError] = useState("");
@@ -97,4 +97,4 @@ function Prijava({users}) {
   )
 }
 
-export default Prijava
+export default Login

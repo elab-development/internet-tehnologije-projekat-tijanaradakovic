@@ -3,7 +3,7 @@ import { useState } from 'react'
 import '../App.css';
 import { Link ,useNavigate} from 'react-router-dom';
 import TextField from '../components/shared/TextField';
-
+import NavBar from '../components/NavBar';
 
 function Prijava({users}) {
   const[email,setEmail] = useState("");
@@ -12,8 +12,9 @@ function Prijava({users}) {
   const navigate = useNavigate();
   function handleSubmit(e){
     e.preventDefault();
-    if(!email || !password){
+    if(!email|| !password){
       setError("Email and password are required!");
+      alert("cap");
       return;
     }
     
@@ -21,11 +22,16 @@ function Prijava({users}) {
     setError("");
     const nameExist = users.find(user => user.email ===email);
     if(!nameExist){
-      console.log('ne postoji koristnik s atim imenom');
+      setError('Ne postoji koristnik s tim imenom');
+      alert('Ne postoji koristnik s tim imenom');
     }
     const passExist = users.find(user => user.password ===password);
     if(passExist){
       navigate('/trips');
+    }
+    else{
+      alert('Netacna lozinka!');
+
     }
 
    
@@ -36,6 +42,8 @@ function Prijava({users}) {
   
   return (
     <div className='login-page'>
+              <NavBar/>
+
       <div className='login-header'>
             <h1>Log In</h1>
         </div>
@@ -63,11 +71,14 @@ function Prijava({users}) {
                     id='password'
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
-                    required
+                    required={true}
 
               />
         </div>
-        <button type='submit' className='login-button' style={{width:'100px', height:'40px'}}>Login</button>
+        
+          <button type='submit' className='login-button' style={{width:'100px', height:'40px'}}>Login</button>
+          
+       
       </form>
       <div className='register-link'>Don't have an account?<Link to='/register'>Register here!</Link> </div>
      </div>

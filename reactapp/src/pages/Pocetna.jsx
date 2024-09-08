@@ -1,53 +1,22 @@
 import React from 'react'
-import Trip from '../models/Trip'
-import { useState } from 'react'
-import Trips from '../trips/trips.json';
-import TextField from '../components/shared/TextField';
-import Footer from '../components/shared/Footer';
-import Header from '../components/shared/Header';
+import NavBar from '../components/NavBar'
 
-export default function Pocetna({trips,handleAddFav,handleRmvFav}) {
-  const [search,setSearch]= useState("")
-  const filteredDate =Trips.filter(t => {
-    return (
-      t.naziv.toLowerCase().startsWith(search)
-    )});
-    function handleSearch(e){
-      setSearch(e.target.value.toLowerCase());
-  }
-
+function Pocetna() {
   return (
     <>
-    
-    <Header/>
-      <div className='pocetna-page'>
-          <h2>Putovanja</h2>
-      <div className='search'>
-        <p style ={{marginRight:'20px'}}>Search:</p>
-        <TextField
-          type="text"
-          name="search"
-          id="search_id"
-          placeholder='Search...'
-          value ={search}
-          onChange={handleSearch}
-          
-        
-          />
-          </div>
-         
-        
-          {filteredDate ? filteredDate.map((t,index) => 
-              <Trip trip={t} addFav={handleAddFav} rmvFav={handleRmvFav} key ={index}/>
-          ) :trips.map(t => 
-            <Trip trip={t} key ={t.id}/>
-          )}
-          {filteredDate.length === 0 ? <p>Nema ponudjenih putovanja!</p>:<p></p>}
-        
-      
+    <NavBar />
+    <div className= 'container-home'>
+      <body>
+      <div className='home'>
 
-      <Footer/>
+      <h1>Welcome!</h1>
+    
       </div>
+      </body>
+
+    </div>
     </>
   )
 }
+
+export default Pocetna

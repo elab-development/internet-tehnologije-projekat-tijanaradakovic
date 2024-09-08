@@ -24,7 +24,7 @@ const Trip =({trip,addFav,rmvFav})=> {
           <div className={`star ${isFilled ? 'filled' : ''}`}
          onClick={() => setIsFilled(!isFilled)} 
     >
-          <FaStar onClick={()=>addFav(trip.id)}></FaStar>
+          <FaStar onClick={()=>( !isFilled? addFav(trip.id): rmvFav(trip.id))}></FaStar>
         </div>
         
       </div>

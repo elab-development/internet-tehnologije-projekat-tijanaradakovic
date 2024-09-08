@@ -1,27 +1,35 @@
 import React from 'react'
-import { useState,useEffect } from 'react';
+import { useState} from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import TextField from '../components/shared/TextField';
-
+import NavBar from '../components/NavBar';
 
 function Registracija() {
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
     const[name,setName] = useState("");
     const [error, setError] = useState("");
+    const [data,setData]= useState([]);
 
     function handleSubmit(e){
         e.preventDefault();
-        if(!email || !password || !name){
+        if(!email || !password || !name
+        ){
           setError("Email, password and name are required!");
+          console.log("ovde");
           return;
         }
-      
-         
+        
+        setData({
+          'name':name,
+          'email':email,
+          'password': password
+        }
+      )
         setError("");
           
-        console.log('Uspesno ste se registrovali!');
+        alert('Uspesno ste se registrovali!');
       }
         
         
@@ -32,6 +40,8 @@ function Registracija() {
     
     return (
         <div className='login-page'>
+                  <NavBar/>
+
         <div className='login-header'>
             <h1>Create a new account!</h1>
         </div>
@@ -45,7 +55,7 @@ function Registracija() {
             id="name"
             value={name}
             onChange={(e)=> setName(e.target.value)}
-            required
+            required= {true}
             />
             
         </div>
@@ -57,7 +67,7 @@ function Registracija() {
                       id="email"
                       value ={email}
                       onChange={(e)=>setEmail(e.target.value)}
-                      required
+                      required={true}
   
                   />
           </div>
@@ -70,7 +80,7 @@ function Registracija() {
                       id='password'
                       value={password}
                       onChange={(e)=>setPassword(e.target.value)}
-                      required
+                      required={true}
   
                 />
           </div>

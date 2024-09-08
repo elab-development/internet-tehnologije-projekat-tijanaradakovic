@@ -10,12 +10,24 @@
       "aktivnosti": [
         {
           "aktivnost_id": 1,
+          "dan": "1",
           "naziv_aktivnosti": "Obilazak Partenona"
           
         },
         {
           "aktivnost_id": 2,
+          "dan": "2",
           "naziv_aktivnosti": "Nocna zurka"
+        },
+        {
+          "aktivnost_id": 3,
+          "dan": "3",
+          "naziv_aktivnosti": "Obilazak muzeja"
+        },
+        {
+          "aktivnost_id": 4,
+          "dan": "4",
+          "naziv_aktivnosti": "Slobodan dan"
         }
       ]
     },
@@ -29,13 +41,24 @@
       "aktivnosti": [
         {
           "aktivnost_id": 1,
-          "naziv_aktivnosti": "Obilazak Koloseuma"
-         
+          "dan": "1",
+          "naziv_aktivnosti": "Obilazak Partenona"
+          
         },
         {
-           "aktivnost_id": 2,
-          "naziv_aktivnosti": "Vatikan"
-          
+          "aktivnost_id": 2,
+          "dan": "2",
+          "naziv_aktivnosti": "Nocna zurka"
+        },
+        {
+          "aktivnost_id": 3,
+          "dan": "3",
+          "naziv_aktivnosti": "Obilazak muzeja"
+        },
+        {
+          "aktivnost_id": 4,
+          "dan": "4",
+          "naziv_aktivnosti": "Slobodan dan"
         }
       ]
     },
@@ -49,12 +72,24 @@
       "aktivnosti": [
         {
           "aktivnost_id": 1,
-          "naziv_aktivnosti": "Obilazak Aje Sofije"
-         
+          "dan": "1",
+          "naziv_aktivnosti": "Obilazak Partenona"
+          
         },
         {
-           "aktivnost_id": 2,
-          "naziv_aktivnosti": "Krstarenje Bosforom"
+          "aktivnost_id": 2,
+          "dan": "2",
+          "naziv_aktivnosti": "Nocna zurka"
+        },
+        {
+          "aktivnost_id": 3,
+          "dan": "3",
+          "naziv_aktivnosti": "Obilazak muzeja"
+        },
+        {
+          "aktivnost_id": 4,
+          "dan": "4",
+          "naziv_aktivnosti": "Slobodan dan"
         }
       ]
     },{
@@ -74,11 +109,29 @@
        "opis": "Predstavljamo vam jedan od najposećenijih gradova u Evropi i najposećeniju turističku destinaciju u Španiji. Barselona je mesto čija arhitektura hiljadama godina oduševljava posetioce, ali koja nudi i obilje drugog turističkog sadržaja. Kako biste na pravi način istražili ponudu grada i sve njene atrakcije, za vas smo napravili kompletan turistički vodič kroz Barselonu. U njemu ćete pronaći sve turističke informacije o sadržajima, gradskim turama, restoranima, smeštajnim jedinicama, te otkriti savete koji će vam pomoći da za što manje novca uživate u kompletnoj gradskoj ponudi. Pripremite se za savršeno iskustvo! Pođite na put kroz najlepšu arhitekturu sveta.",
        "datum_polaska": "23.04.2025.",
        "datum_dolaska": "27.04.2025.",
-       "aktivnosti": [{
+       "aktivnosti": [
+        {
           "aktivnost_id": 1,
-          "naziv_aktivnosti": "Park Guel"
-       }
-       ]
+          "dan": "1",
+          "naziv_aktivnosti": "Obilazak Partenona"
+          
+        },
+        {
+          "aktivnost_id": 2,
+          "dan": "2",
+          "naziv_aktivnosti": "Nocna zurka"
+        },
+        {
+          "aktivnost_id": 3,
+          "dan": "3",
+          "naziv_aktivnosti": "Obilazak muzeja"
+        },
+        {
+          "aktivnost_id": 4,
+          "dan": "4",
+          "naziv_aktivnosti": "Slobodan dan"
+        }
+      ]
      }
   ]
   

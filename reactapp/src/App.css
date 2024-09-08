@@ -36,19 +36,7 @@
     transform: rotate(360deg);
   }
 }
-.NavBar {
-  display: flex;
-  flex-direction: row;
-  background-color: rgb(211, 211, 211);
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: rgb(175, 175, 175);
-  align-items: center;
-  min-height: 40px;
-  padding-left: 25px;
-  font-size: large;
-  justify-content: center;
-}
+
 
  .login-form {
   color: #282c34;
@@ -145,13 +133,7 @@ h4 {
 
 
 
-table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%; /* Primer širine tabele */
-  margin-top: 50px;
-  
-}
+
 
 .page {
   align-items: center;
@@ -262,12 +244,12 @@ button{
 }
 
 .sidebar-poc.open {
-  right: 0; /* Sidebar se pojavljuje */
+  right: 0; 
   position: fixed;
 }
 
 .sidebar-poc.closed {
-  right: -20%; /* Sidebar se skriva */
+  right: -20%; 
 }
 .card-body-div{
   width: 20px;
@@ -317,7 +299,7 @@ button{
 .container-fluid {
   display: flex;
   flex-direction: column;
-  padding: 0 15px; /* Adjust padding as needed */
+  padding: 0 15px; 
 
 
 }

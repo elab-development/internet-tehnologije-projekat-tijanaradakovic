@@ -1,15 +1,15 @@
 import React from 'react'
 import Trip from '../models/Trip'
 import { useState} from 'react'
-import Trips from '../trips/trips.json';
 import TextField from '../components/shared/TextField';
 import Footer from '../components/shared/Footer';
 import { FaGripLines } from "react-icons/fa";
 import SideBar from '../models/SideBar';
 import NavBar from '../components/NavBar';
+
 export default function TripPage({trips}) {
   const [search,setSearch]= useState("")
-  const filteredDate =Trips.filter(t => {
+  const filteredDate =trips.filter(t => {
     return (
       t.naziv.toLowerCase().startsWith(search)
     )});
@@ -41,42 +41,31 @@ export default function TripPage({trips}) {
 
   return (
     <>
-    
-    <NavBar/>
-
+      <NavBar/>
       <div className='pocetna-page'>
-          <h2>Putovanja</h2>
-          <div className={`sidebar-poc ${isSidebarOpen ? 'open' : 'closed'}`}>
-      <SideBar favorites={favorites} numFav={favoritesNum}></SideBar>
-                  </div>
-        <FaGripLines className="toggle-btn" onClick={toggleSidebar} style={{marginLeft:'900px'}}>
-        
-      </FaGripLines>
-      <div className='search'>
-        <p style ={{marginRight:'20px'}}>Search:</p>
-        <TextField
-          type="text"
-          name="search"
-          id="search_id"
-          placeholder='Search...'
-          value ={search}
-          onChange={handleSearch}
-          
-        
+        <h2>Putovanja</h2>
+        <div className={`sidebar-poc ${isSidebarOpen ? 'open' : 'closed'}`}>
+          <SideBar favorites={favorites} numFav={favoritesNum}></SideBar>
+        </div>
+        <FaGripLines className="toggle-btn" onClick={toggleSidebar} style={{marginLeft:'900px'}}/>
+        <div className='search'>
+          <p style ={{marginRight:'20px'}}>Search:</p>
+          <TextField
+            type="text"
+            name="search"
+            id="search_id"
+            placeholder='Search...'
+            value ={search}
+            onChange={handleSearch}
           />
-          </div>
-         
-        
-          {filteredDate ? filteredDate.map((t,index) => 
-              <Trip trip={t} addFav={handleAddFav} rmvFav={handleRmvFav} key ={index}/>
-          ) :trips.map(t => 
-            <Trip trip={t} addFav={handleAddFav} rmvFav={handleRmvFav} key ={t.id}/>
-          )}
-          {filteredDate.length === 0 ? <p>Nema ponudjenih putovanja!</p>:<p></p>}
-        
-      
-
-      <Footer/>
+        </div>
+            {filteredDate ? filteredDate.map((t,index) => 
+                <Trip trip={t} addFav={handleAddFav} rmvFav={handleRmvFav} key ={index}/>
+            ) :trips.map(t => 
+              <Trip trip={t} addFav={handleAddFav} rmvFav={handleRmvFav} key ={t.id}/>
+            )}
+            {filteredDate.length === 0 ? <p>Nema ponudjenih putovanja!</p>:<p></p>}
+        <Footer/>
       </div>
     </>
   )

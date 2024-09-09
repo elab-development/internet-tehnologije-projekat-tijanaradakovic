@@ -1,7 +1,6 @@
 import React from "react";
 
-const TextField =({type,name,id,value,onChange,required=false,placeholder=""}) =>(
-    
+const TextField =({type,name,id,value,onChange,required=false,placeholder=""}) =>(  
     <input
     type ={type}
     name={name}
@@ -12,6 +11,5 @@ const TextField =({type,name,id,value,onChange,required=false,placeholder=""}) =
     required={required}
     placeholder={placeholder}
     />
-
 );
 export default TextField;

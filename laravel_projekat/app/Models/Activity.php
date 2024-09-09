@@ -11,17 +11,15 @@ class Activity extends Model
     use HasFactory;
     protected $table = 'activities';
     protected $fillable = [
-        'naziv',
-        'lokacija',
-        'tip',
+        'name',
+        'location',
+        'type',
+
         
          
     ];
 
-    public function plans()
-    {
-        return $this->belongsToMany(Plan::class,'plan_activity');
-    }
+   
     
     
 }

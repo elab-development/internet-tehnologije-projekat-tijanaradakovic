@@ -5,27 +5,25 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Plan extends Model
+class DailyPlan extends Model
 {
     use HasFactory;
 
     protected $fillable =[
-        'dan',
+        'day',
+        'description'
         //'aktivnost',
     ];
 
     public function activities()
     {
-        return $this->belongsToMany(Activity::class,'plan_activity');
+        return $this->belongsTo(Activity::class);
         
         
     }
-    public function trips()
+    public function travel_plans()
     {
-        return $this->belongsTo(Trip::class);
+        return $this->belongsTo(TravelPlan::class);
     }
-    public function users()
-    {
-        return $this->belongsTo(User::class);
-    }
+    
 }

@@ -1,6 +1,4 @@
 import React from "react";
-import { useState } from "react";
-import SideBar from "../../models/SideBar";
 const Header =()=>{
    
     return (

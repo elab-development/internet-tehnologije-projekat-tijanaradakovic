@@ -11,14 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('plans', function (Blueprint $table) {
-            $table->id('id');
-            $table->integer('dan');
-            //$table->foreignId('aktivnost_id');
-            $table->foreignId('user_id');
-           
-            $table->foreignId('putovanje_id');
-            $table->timestamps();
+        Schema::table('activities', function (Blueprint $table) {
+            $table->dropColumn('destination');
         });
     }
 
@@ -27,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('plans');
+        Schema::table('activities', function (Blueprint $table) {
+            $table->string('destination');
+        });
     }
 };

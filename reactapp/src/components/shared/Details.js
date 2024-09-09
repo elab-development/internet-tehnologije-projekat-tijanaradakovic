@@ -10,8 +10,7 @@ const Details = () => {
 
   return (
     <><Header/>
-      <div className='container'>
-        
+      <div className='container'>      
         <div className='back-text'>
           <Link to="/trips" id="back-link" style={{ color: 'white', textDecoration: 'none', backgroundColor: 'grey', padding: '0.5rem 1rem' }}>
             Back
@@ -28,28 +27,20 @@ const Details = () => {
                 <p>{trip.opis}</p>
                 <div className='aktivnosti' role='tab' id='headingOne'>
                   <h5>Aktivnosti:</h5>
-                
-                <ul>
-                {trip.aktivnosti.map((a, index) => (
+                  <ul>{trip.aktivnosti.map((a, index) => (
                     <li key = {a.id}>{a.dan}. dan {a.naziv_aktivnosti}</li>
-                  ))}
-                </ul>
+                    ))}
+                  </ul>
                 </div>
-                  
-                
-                
               </div>
-             
             </div>
-           
           </div>
           <div className="col-md-5">
             <div className='image-section'>
               <img src={require("../../trips/img/" + trip.picture)} alt={trip.naziv} />
             </div>
           </div>
-        </div>
-        
+        </div>  
       </div>
       <Footer />
     </>

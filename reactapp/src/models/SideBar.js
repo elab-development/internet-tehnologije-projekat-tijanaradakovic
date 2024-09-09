@@ -8,17 +8,13 @@ function SideBar({favorites,numFav}) {
         <h6>{numFav}</h6>
         <div className='favorite-list'></div>
             {favorites.map((trip,index)=>{
-                return (
-                   
+                return ( 
                     <div className="trip-card" key={trip.id}>
                       <img src={require (".././trips/img/" +trip.picture)} alt={trip.naziv} /> 
                       <p>{trip.naziv}</p>
-                      </div>
-                    
+                      </div>   
                 )
-            })
-
-            }
+            })}
     </div>
   )
 }

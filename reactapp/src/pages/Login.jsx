@@ -18,17 +18,12 @@ function Login({users}) {
   //   }
   // }, [loggedIn]);
  
-
-
-
   function handleSubmit(e){
     e.preventDefault();
     if(!email|| !password){
       setError("Email and password are required!");
       return;
     }
-    
-
     setError("");
     const nameExist = users.find(user => user.email ===email);
     if(!nameExist){
@@ -37,7 +32,7 @@ function Login({users}) {
     }
     const passExist = users.find(user => user.password ===password);
     if(passExist){
-     // setLoggedIn(true);
+    
      navigate('/trips');
     }
     else{
@@ -70,10 +65,8 @@ function Login({users}) {
                     value ={email}
                     onChange={(e)=>setEmail(e.target.value)}
                     required= {true}
-
                 />
         </div>
-
         <div className="form-group">
           <label htmlFor='password'>Password</label>
           <TextField
@@ -83,7 +76,6 @@ function Login({users}) {
                     value={password}
                     onChange={(e)=>setPassword(e.target.value)}
                     required={true}
-
               />
         </div>
         

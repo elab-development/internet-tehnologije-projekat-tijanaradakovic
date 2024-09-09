@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('activities', function (Blueprint $table) {
-            $table->renameColumn('lokacija','destinacija');
-
+        Schema::table('travel_plans', function (Blueprint $table) {
+            $table->dropColumn('days_num');
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('activities', function (Blueprint $table) {
-            $table->renameColumn('destinacija','lokacija');
+        Schema::table('travel_plans', function (Blueprint $table) {
+            $table->integer('days_num');
         });
     }
 };

@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('activities', function (Blueprint $table) {
-            $table->string('tip');
+            $table->renameColumn('location','destination');
+
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('activities', function (Blueprint $table) {
-            $table->dropColumn('tip');
+            $table->renameColumn('destination','location');
         });
     }
 };

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\TravelPlan;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -65,5 +66,10 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+    public function indexUserTravel($id){
+        $user=User::find($id);
+        $travels= TravelPlan::where('user_id',$id)->get();
+        return response()->json($travels);
     }
 }

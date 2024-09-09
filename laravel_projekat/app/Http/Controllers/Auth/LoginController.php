@@ -36,7 +36,7 @@ class LoginController extends Controller
        
         $token =$user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message' => 'Korisnik uspesno registrovan','data'=>$user]);
+        return response()->json(['message' => 'Korisnik uspesno registrovan','data'=>$user,'token'=>$token]);
 
     }
     public function login(Request $request)
@@ -63,7 +63,8 @@ class LoginController extends Controller
     }
     public function logout(Request $request)
     {
-        Auth::logout();
-        return redirect('/');
+        $user=Auth::user();
+        $user->tokens()->delete();
+        return response()->json(['logout successfully']);
     }
 }

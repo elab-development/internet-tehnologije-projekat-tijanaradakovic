@@ -46,7 +46,7 @@ class TravelPlanController extends Controller
      */
     public function show($id)
     {
-        $travel =TravelPlan::find($id);
+        $travel =TravelPlan::findOrFail($id);
         
         return response()->json($travel);
     }
@@ -64,7 +64,7 @@ class TravelPlanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $travel = TravelPlan::find($id);
+        $travel = TravelPlan::findOrFail($id);
         $travel->user_id=auth()->id();
         $travel->destination = $request->destination;
         $travel->start_date = $request->start_date;
@@ -80,7 +80,7 @@ class TravelPlanController extends Controller
      */
     public function destroy($id)
     {
-        $travel=TravelPlan::find($id);
+        $travel=TravelPlan::findOrFail($id);
         $travel->delete();
         return response(['message'=>'Travel deleted successfully!']);
     }

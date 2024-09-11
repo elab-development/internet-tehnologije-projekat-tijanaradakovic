@@ -77,7 +77,7 @@ class DailyPlanController extends Controller
      */
     public function update(Request $request,$id)
     {
-        $plan = DailyPlan::find($id);
+        $plan = DailyPlan::findOrFail($id);
         $plan->day = $request->day;
         $plan->travel_plan_id= $request->travel_plan_id;
         $randomActivity = Activity::inRandomOrder()->limit(1)->first();
@@ -96,7 +96,7 @@ class DailyPlanController extends Controller
      */
     public function destroy($id)
     {
-        $plan= DailyPlan::find($id);
+        $plan= DailyPlan::findOrFail($id);
         $plan->delete();
         return response()->json(['message'=>'Deleted plan!']);
     }

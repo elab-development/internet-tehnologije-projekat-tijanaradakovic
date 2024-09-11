@@ -13,7 +13,8 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        //
+        $activities = Activity::all();
+        return response()->json($activities);
     }
 
     /**
@@ -36,9 +37,10 @@ class ActivityController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $activity = Activity::findOrFail($id);
+        return response()->json($activity);
     }
 
     /**

@@ -4,43 +4,36 @@ import '../App.css';
 import { Link ,useNavigate} from 'react-router-dom';
 import TextField from '../components/shared/TextField';
 import NavBar from '../components/NavBar';
+import axios from 'axios';
 
 function Login({users}) {
-  const[email,setEmail] = useState("");
-  const[password,setPassword] = useState("");
-  const [error, setError] = useState("");
   const navigate = useNavigate();
-  //const [loggedIn,setLoggedIn] = useState(false);
+  const[userData,setUser] = useState({
+    email:"",
+    password:"",
+  });
+  const [error,setError] = useState(null);
+  const [success,setSuccess] = useState(null);
+  function handleChange(e){
+    let newUserData = userData;
+    newUserData[e.target.name]= e.target.value;
+    setUser(newUserData);
 
-  // useEffect(() => {
-  //   if (loggedIn) {
-  //     navigate('/trips');
-  //   }
-  // }, [loggedIn]);
+  }
+  
  
   function handleSubmit(e){
     e.preventDefault();
-    if(!email|| !password){
-      setError("Email and password are required!");
-      return;
-    }
-    setError("");
-    const nameExist = users.find(user => user.email ===email);
-    if(!nameExist){
-      setError('Ne postoji koristnik s tim imenom');
-      alert('Ne postoji koristnik s tim imenom');
-    }
-    const passExist = users.find(user => user.password ===password);
-    if(passExist){
-    
-     navigate('/trips');
-    }
-    else{
-      alert('Netacna lozinka!');
+    try{
+      axios.post("http://127.0.0.1:8000/api/login", userData);
 
-    }
+      setSuccess('Successful login');
+      setError(null);
 
-   
+    }catch(e){
+        setSuccess(null);
+        setError('Login failed')
+    }
     
     
   
@@ -63,7 +56,7 @@ function Login({users}) {
                     name="email"
                     id="email"
                     value ={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={handleChange}
                     required= {true}
                 />
         </div>
@@ -74,7 +67,7 @@ function Login({users}) {
                     name='password'
                     id='password'
                     value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={handleChange}
                     required={true}
               />
         </div>

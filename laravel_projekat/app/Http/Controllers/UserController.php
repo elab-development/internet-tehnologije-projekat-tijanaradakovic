@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cache;
 use App\Models\User;
 use App\Models\TravelPlan;
 use Illuminate\Http\Request;
@@ -14,7 +15,9 @@ class UserController extends Controller
     public function index()
     {
         
-        $users =User::all();
+        $users = Cache::remember('users_all', 60, function () {
+            return User::all();
+        });
         $users =User::paginate(10);
         return $users;
     }
@@ -69,7 +72,7 @@ class UserController extends Controller
     }
     public function indexUserTravel($id){
         $user=User::find($id);
-        $travels= TravelPlan::where('user_id',$id)->get();
+        $travels= TravelPlan::where('user_id', $id)->get();
         return response()->json($travels);
     }
 }

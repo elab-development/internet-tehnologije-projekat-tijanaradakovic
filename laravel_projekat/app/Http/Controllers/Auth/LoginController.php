@@ -36,7 +36,7 @@ class LoginController extends Controller
        
         $token =$user->createToken('auth_token')->plainTextToken;
 
-        return response()->json(['message' => 'Korisnik uspesno registrovan','data'=>$user,'token'=>$token]);
+        return response()->json(['message' => 'Korisnik uspesno registrovan','data'=>$user,'access_token'=>$token]);
 
     }
     public function login(Request $request)
@@ -56,7 +56,7 @@ class LoginController extends Controller
         $token =$user->createToken('auth_token')->plainTextToken;
 
 
-        return response()->json(['message'=>'Zdravo '.$user->name.' dobrodosli na home stranicu ','access_token'=>$token,'token_type'=>'Bearer']);
+        return response()->json(['access_token'=>$token,'token_type'=>'Bearer']);
        
     
 

@@ -8,6 +8,7 @@ import Users from './trips/users.json';
 import Details from './components/shared/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TripPage from './pages/TripPage';
+import ChatPage from './pages/ChatPage';
 function App() {
  
   return (
@@ -15,10 +16,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home  />}/>
-          <Route path="/login" element={<Login users={Users}/>}/>
+          <Route path="/login" element={<Login />}/>
           <Route path= "/trips"element={<TripPage trips={Trips}/>}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/details/:id" element={<Details/>}/>           
+          <Route path="/chatGpt" element={<ChatPage/>}/>           
         </Routes>
       </BrowserRouter>
     </>

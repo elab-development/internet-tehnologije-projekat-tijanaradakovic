@@ -6,7 +6,7 @@ import TextField from '../components/shared/TextField';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
 
-function Login({users}) {
+function Login() {
   const navigate = useNavigate();
   const[userData,setUser] = useState({
     email:"",
@@ -14,21 +14,34 @@ function Login({users}) {
   });
   const [error,setError] = useState(null);
   const [success,setSuccess] = useState(null);
+
   function handleChange(e){
-    let newUserData = userData;
-    newUserData[e.target.name]= e.target.value;
-    setUser(newUserData);
+    // let newUserData = userData;
+    // newUserData[e.target.name]= e.target.value;
+    // setUser(newUserData);
+    setUser({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
 
   }
   
  
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault();
     try{
-      axios.post("http://127.0.0.1:8000/api/login", userData);
+      console.log('user data ', userData);
+      const response = await axios.post("http://127.0.0.1:8000/api/login", userData);
+
+      const token = response.data.access_token;
+      localStorage.setItem('auth_token', token);
+      console.log('token ', token);
+      console.log('data ', response.data);
+
 
       setSuccess('Successful login');
       setError(null);
+      navigate('/chatGpt');
 
     }catch(e){
         setSuccess(null);
@@ -55,7 +68,7 @@ function Login({users}) {
                     type="text"
                     name="email"
                     id="email"
-                    value ={email}
+                    value ={userData.email}
                     onChange={handleChange}
                     required= {true}
                 />
@@ -66,7 +79,7 @@ function Login({users}) {
                     type="password"
                     name='password'
                     id='password'
-                    value={password}
+                    value={userData.password}
                     onChange={handleChange}
                     required={true}
               />

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DailyPlan;
+use App\Models\TravelPlan;
 //use App\Models\Activity;
 use App\Models\Activity;
 
@@ -10,6 +11,7 @@ use Illuminate\Http\Request;
 //use App\Http\Controllers\Redirect;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
+use Http\Services\OpenAIService;
 
 
 class DailyPlanController extends Controller
@@ -17,6 +19,14 @@ class DailyPlanController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+    protected $openAIService;
+
+    public function __construct(OpenAIService $openAIService)
+    {
+        $this->openAIService = $openAIService;
+    }
     public function index()
     {
         $plans = DB::table('daily_plans')
@@ -99,5 +109,10 @@ class DailyPlanController extends Controller
         $plan= DailyPlan::findOrFail($id);
         $plan->delete();
         return response()->json(['message'=>'Deleted plan!']);
+    }
+    public function generateTravelPlan(TravelPlan $travelPlan,$usersInput)
+    {
+        $generetedPlan = $this->OpenAIService->generateTravelPlan($usersInput);
+
     }
 }

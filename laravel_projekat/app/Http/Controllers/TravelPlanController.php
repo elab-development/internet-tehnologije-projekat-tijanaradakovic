@@ -6,6 +6,7 @@ use App\Models\TravelPlan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class TravelPlanController extends Controller
 {
@@ -32,15 +33,39 @@ class TravelPlanController extends Controller
      */
     public function store(Request $request)
     {
-        $travel = new TravelPlan();
-        //$travel->user_id=1;
-        $travel->user_id= auth()->id();;
-        $travel->destination = $request->destination;
-        $travel->start_date = $request->start_date;
-        $travel->end_date = $request->end_date;
+        $request->validate([
+            'destination'=>'required|string',
+            'start_date'=>'required|date',
+            'end_date'=>'required|date|after_or_equal:start_date',
+            'guide'=>'required|string'
+        ]);
+        if($request->input('guide')=='yes'){
+            $guideNum ='1';
+        }
+        else
+        {
+            $guideNum='0';
+        }
+        $startDateInput = $request->input('start_date');
+        $endDateinput = $request->input('end_date');
+        $startdate = Carbon::createFromFormat('m.d.Y', $startDateInput);
+        $enddate = Carbon::createFromFormat('m.d.Y', $endDateinput);
+        $formatedStart=$startdate->format('Y.m.d');
+        $formatedEnd=$enddate->format('Y.m.d');
 
-        $travel->save();
-        return response()->json(['message'=>'Travel saved successfully']);
+
+        $travelPlan = TravelPlan::create([
+            'user_id'=>auth()->id(),
+            'destination' => $request->input('destination'),
+            'start_date' => $formatedStart,
+            'end_date' => $formatedEnd,
+            'guide'=>$guideNum
+        ]);
+
+       
+
+        $planController = new DailyPlanController();
+        $plan= $planController->generateTravelPlan($travel,$request->all());
 
     }
 

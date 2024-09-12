@@ -9,6 +9,9 @@ import Details from './components/shared/Details';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TripPage from './pages/TripPage';
 import ChatPage from './pages/ChatPage';
+import AdminPage from './pages/AdminPage';
+import UsersPage from './pages/adminpage/UsersPage';
+import TravelsPage from './pages/adminpage/TravelsPage';
 function App() {
  
   return (
@@ -17,10 +20,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home  />}/>
           <Route path="/login" element={<Login />}/>
-          <Route path= "/trips"element={<TripPage trips={Trips}/>}/>
+          <Route path= "/trips"element={<TripPage/>}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/details/:id" element={<Details/>}/>           
           <Route path="/chatGpt" element={<ChatPage/>}/>           
+          <Route path="/admin" element={<AdminPage/>}/>           
+          <Route path="/users" element={<UsersPage/>}/>           
+          <Route path="/travels" element={<TravelsPage/>}/>           
         </Routes>
       </BrowserRouter>
     </>

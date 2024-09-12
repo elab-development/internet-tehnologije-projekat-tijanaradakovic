@@ -2,12 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
 import { useState } from 'react';
+
 const Trip =({trip,addFav,rmvFav})=> {
   const [isFilled, setIsFilled] = useState(false);
   return (
     <>
       <div className='card'>
-        <img src={require (".././trips/img/" +trip.picture)} alt={trip.naziv} className='card-img'/>
+        {/*   <img src={require (".././trips/img/" + trip.picture)} alt={trip.naziv} className='card-img'/> */}
         <div className='card-body'>
           <h3>{trip.naziv}</h3>
           <p>{trip.datum_polaska}-{trip.datum_dolaska} </p>

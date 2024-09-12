@@ -31,7 +31,15 @@ function Login() {
       const response = await axios.post("api/login", userData);
 
       const token = response.data.access_token;
+      const user = response.data.user;
+      const userId = user.id;
+
+      console.log('login user id ', userId);
+
       localStorage.setItem('auth_token', token);
+      localStorage.setItem('user', user);
+      localStorage.setItem('user_id', userId);
+
       console.log('token ', token);
       console.log('data ', response.data);
       setSuccess('Successful login');

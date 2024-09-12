@@ -8,6 +8,9 @@ function NavBar() {
       <li className="nav-item">
         <Link to="/">Home</Link>
       </li>
+      <li className='nav-item'>
+        <Link to="/admin">Admin</Link>
+      </li>
       
       <li className="nav-item dropdown">
         <a href="#" className="dropdown-toggle">Account</a>

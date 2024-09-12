@@ -17,7 +17,9 @@ class TravelPlanController extends Controller
      */
     public function index()
     {
+       
         $travels = TravelPlan::all();
+        
         return response()->json($travels);
     }
 

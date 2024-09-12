@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth;
 use App\Models\TravelPlan;
+use App\Models\DailylPlan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Facades\Excel;
@@ -48,24 +49,21 @@ class TravelPlanController extends Controller
         }
         $startDateInput = $request->input('start_date');
         $endDateinput = $request->input('end_date');
-        $startdate = Carbon::createFromFormat('m.d.Y', $startDateInput);
-        $enddate = Carbon::createFromFormat('m.d.Y', $endDateinput);
-        $formatedStart=$startdate->format('Y.m.d');
-        $formatedEnd=$enddate->format('Y.m.d');
+        
 
-
+        //dd($request->all());
         $travelPlan = TravelPlan::create([
             'user_id'=>auth()->id(),
             'destination' => $request->input('destination'),
-            'start_date' => $formatedStart,
-            'end_date' => $formatedEnd,
+            'start_date' => $startDateInput,
+            'end_date' => $endDateinput,
             'guide'=>$guideNum
         ]);
 
        
 
-        $planController = new DailyPlanController();
-        $plan= $planController->generateTravelPlan($travel,$request->all());
+       // $planController = new DailyPlanController();
+        //$plan= $planController->generateTravelPlan($travelPlan,$request->all());
 
     }
 

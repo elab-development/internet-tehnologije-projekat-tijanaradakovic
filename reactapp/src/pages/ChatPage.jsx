@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import TextField from '../components/shared/TextField';
 import { useState } from 'react'
+import axios from 'axios';
 function ChatPage() {
   const [travel,setTravel] = useState({
     destination:"",
@@ -9,6 +10,27 @@ function ChatPage() {
     end_date:"",
     guide:""
   });
+  const formatDate = (dateString) => {
+    const [month, day, year] = dateString.split('/');
+    return `${year}-${month}-${day}`;
+  };
+  const formattedTravel = {
+    ...travel,
+    start_date: formatDate(travel.start_date),
+    end_date: formatDate(travel.end_date),
+  };
+  async function handleSubmit(e){
+  
+    e.preventDefault();
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.post('api/travels',formattedTravel, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      }
+    });
+    console.log(response);
+
+  }
   function handleChange(e){
     setTravel({
       ...travel,
@@ -24,7 +46,7 @@ function ChatPage() {
         </div>
         <div className='row'>
           <div className='col-md-4'>
-            <form className='travel-form'>
+            <form className='travel-form' onSubmit={handleSubmit}>
             <div className='form-group'>
             <label>Destination</label>
               <TextField
@@ -86,6 +108,7 @@ function ChatPage() {
                   <th>Day</th>
                   <th>Description</th>
                   <th>Activity</th>
+                  
                 </tr>
                 
               </thead>

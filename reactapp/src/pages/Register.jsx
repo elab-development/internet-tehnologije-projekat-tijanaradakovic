@@ -1,33 +1,50 @@
 import React from 'react'
 import { useState} from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import '../App.css';
 import TextField from '../components/shared/TextField';
 import NavBar from '../components/NavBar';
+import axios from 'axios';
 
 function Register() {
-    const[email,setEmail] = useState("");
-    const[password,setPassword] = useState("");
-    const[name,setName] = useState("");
-    const [error, setError] = useState("");
-    const [data,setData]= useState([]);
 
+  const [success,setSuccess] = useState(null);
+  const [error, setError] = useState("");
+  let navigate = useNavigate();
+  const [userData,setUserData]= useState({
+    name: "",
+    email:"",
+    password:"",
     
-    function handleSubmit(e){
-        e.preventDefault();
-        if(!email || !password || !name){
-          setError("Email, password and name are required!");
-          return;
-        }
-        setData({
-          'name': name,
-          'email': email,
-          'password': password
-        });
-        setError("");
-        alert('Uspesno ste se registrovali!');
-        console.log(data);
-      } 
+});
+
+  function handleChange(e){
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  async function handleSubmit(e){
+    e.preventDefault();
+    try{
+      console.log('user data ', userData);
+      const response = await axios.post("api/register", userData);
+
+      const token = response.data.access_token;
+      localStorage.setItem('auth_token', token);
+      console.log('token ', token);
+      console.log('data ', response.data);
+      setSuccess('Successful registration!');
+      setError(null);
+      navigate('/login');
+
+    }catch(e){
+        setSuccess(null);
+        setError('Register failed')
+    } 
+  }
+
     return (
         <div className='login-page'>
                   <NavBar/>
@@ -43,8 +60,8 @@ function Register() {
             type="text"
             name="name"
             id="name"
-            value={name}
-            onChange={(e)=> setName(e.target.value)}
+            value={userData.name}
+            onChange={handleChange}
             required= {true}
             />
             
@@ -55,8 +72,8 @@ function Register() {
                       type="text"
                       name="email"
                       id="email"
-                      value ={email}
-                      onChange={(e)=>setEmail(e.target.value)}
+                      value ={userData.email}
+                      onChange={handleChange}
                       required={true}
                   />
           </div>
@@ -66,8 +83,8 @@ function Register() {
                       type="password"
                       name='password'
                       id='password'
-                      value={password}
-                      onChange={(e)=>setPassword(e.target.value)}
+                      value={userData.passeord}
+                      onChange={handleChange}
                       required={true}
                 />
           </div>

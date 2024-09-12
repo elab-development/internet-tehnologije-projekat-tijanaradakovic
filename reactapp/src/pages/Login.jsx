@@ -16,9 +16,6 @@ function Login() {
   const [success,setSuccess] = useState(null);
 
   function handleChange(e){
-    // let newUserData = userData;
-    // newUserData[e.target.name]= e.target.value;
-    // setUser(newUserData);
     setUser({
       ...userData,
       [e.target.name]: e.target.value,
@@ -31,14 +28,12 @@ function Login() {
     e.preventDefault();
     try{
       console.log('user data ', userData);
-      const response = await axios.post("http://127.0.0.1:8000/api/login", userData);
+      const response = await axios.post("api/login", userData);
 
       const token = response.data.access_token;
       localStorage.setItem('auth_token', token);
       console.log('token ', token);
       console.log('data ', response.data);
-
-
       setSuccess('Successful login');
       setError(null);
       navigate('/chatGpt');
@@ -47,9 +42,6 @@ function Login() {
         setSuccess(null);
         setError('Login failed')
     }
-    
-    
-  
   }
   
   return (

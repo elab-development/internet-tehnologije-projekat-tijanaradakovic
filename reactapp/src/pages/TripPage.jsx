@@ -43,7 +43,7 @@ export default function TripPage({trips}) {
     <>
       <NavBar/>
       <div className='pocetna-page'>
-        <h2>Putovanja</h2>
+        <h2>My travels plans</h2>
         <div className={`sidebar-poc ${isSidebarOpen ? 'open' : 'closed'}`}>
           <SideBar favorites={favorites} numFav={favoritesNum}></SideBar>
         </div>

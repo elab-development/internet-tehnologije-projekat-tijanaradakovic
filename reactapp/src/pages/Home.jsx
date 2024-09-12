@@ -9,7 +9,7 @@ function Home() {
       
       <div className='home'>
 
-      <h1>Welcome!</h1>
+      <h1>Welcome to CHATGPT application for generating travel plan!</h1>
     
       </div>
       

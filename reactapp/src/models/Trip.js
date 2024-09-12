@@ -6,7 +6,7 @@ import { useState } from 'react';
 const Trip =({trip,addFav,rmvFav})=> {
   const [isFilled, setIsFilled] = useState(false);
   return (
-    <>
+    <>  
       <div className='card'>
         {/*   <img src={require (".././trips/img/" + trip.picture)} alt={trip.naziv} className='card-img'/> */}
         <div className='card-body'>

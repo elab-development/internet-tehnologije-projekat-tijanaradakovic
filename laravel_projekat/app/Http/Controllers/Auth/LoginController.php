@@ -63,7 +63,7 @@ class LoginController extends Controller
     }
     public function logout(Request $request)
     {
-        $user=Auth::user();
+        $user=auth()->user();
         $user->tokens()->delete();
         return response()->json(['logout successfully']);
     }

@@ -3,6 +3,12 @@ import { useState,useEffect } from 'react'
 import axios from 'axios';
 import {Link} from 'react-router-dom'
 
+const roleMap = {
+  0: "user",
+  1: "admin",
+  2: "guide"
+};
+
 function UsersPage() {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
@@ -61,7 +67,7 @@ function UsersPage() {
                   <td>{user.id}</td>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
-                  <td>{user.role}</td>
+                  <td>{roleMap[user.role]}</td>
                   <td><button type='button'>View travels plans</button></td>
                 </tr>
               ))

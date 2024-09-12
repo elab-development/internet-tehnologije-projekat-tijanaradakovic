@@ -59,7 +59,6 @@ export default function TripPage() {
 
   return (
     <>
-      <NavBar/>
       <div className='pocetna-page'>
         <h2>My travels plans</h2>
         {/* <div className={`sidebar-poc ${isSidebarOpen ? 'open' : 'closed'}`}>

@@ -6,7 +6,7 @@ import TextField from '../components/shared/TextField';
 import NavBar from '../components/NavBar';
 import axios from 'axios';
 
-function Login() {
+function Login({addToken}) {
   const navigate = useNavigate();
   const[userData,setUser] = useState({
     email:"",
@@ -33,12 +33,13 @@ function Login() {
       const token = response.data.access_token;
       const user = response.data.user;
       const userId = user.id;
-
-      console.log('login user id ', userId);
+      const userRole = user.role;
+      addToken(token);
 
       localStorage.setItem('auth_token', token);
       localStorage.setItem('user', user);
       localStorage.setItem('user_id', userId);
+      localStorage.setItem('user_role', userRole);
 
       console.log('token ', token);
       console.log('data ', response.data);
@@ -54,7 +55,6 @@ function Login() {
   
   return (
     <div className='login-page'>
-              <NavBar/>
 
       <div className='login-header'>
             <h1>Log In</h1>

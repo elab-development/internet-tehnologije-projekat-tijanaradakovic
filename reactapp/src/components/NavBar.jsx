@@ -1,31 +1,66 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useState, createContext, useContext } from 'react';
+import { Outlet } from 'react-router-dom';
+import axios from 'axios';
+function NavBar({ links, token }) {
+  const [currentToken, setCurrentToken] = useState(token);
+  const navigate = useNavigate();
 
-function NavBar() {
+  useEffect(() => {
+    // Sync token with sessionStorage
+    const tokenFromStorage = sessionStorage.getItem('access_token');
+    setCurrentToken(tokenFromStorage);
+  }, [token]);
+
+  function handleLogout() {
+    let config = {
+      method: "post",
+      url: "api/logout",
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+        localStorage.clear();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    navigate('/login');
+  }
+
   return (
-    <nav className="navbar">
-    <ul className="nav-list">
-      <li className="nav-item">
-        <Link to="/">Home</Link>
-      </li>
-      <li className='nav-item'>
-        <Link to="/admin">Admin</Link>
-      </li>
-      
-      <li className="nav-item dropdown">
-        <a href="#" className="dropdown-toggle">Account</a>
-        <ul className="dropdown-menu">
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/register">Register</Link></li>
-          
-        </ul>
-      </li>
-      
-    </ul>
-    </nav>
-  )
+    <div>
+      <nav className="navbar">
+      <ul className="nav-list">
+        {currentToken && links.map((link) => (
+          <li key={link.to} className="nav-item">
+            <a href={link.to}>{link.text}</a>
+          </li>
+        ))}
 
+        
+        {currentToken ? (
+          <li className="nav-item">
+            <button onClick={handleLogout}>Logout</button>
+          </li>
+        ) : (
+          <li className="nav-item">
+            <a href="/login">Login</a>
+          </li>
+        )}
+      </ul>
+    </nav>
+
+      <Outlet />  
+    </div>
+    
+  );
 }
 
-
-export default NavBar
+export default NavBar;

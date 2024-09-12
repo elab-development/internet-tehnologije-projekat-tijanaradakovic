@@ -42,7 +42,7 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::post('logout',[LoginController::class,'logout']);
 
 });
-Route::group(['middleware'=>['auth:sanctum','isAdmin']],function (){
+Route::group(['middleware'=>['auth:sanctum']],function (){
     
     //Route::post('activities',[ActivityController::class,'store']); //uradjeno
     //Route::put('/activities/{id}',[ActivityController::class,'update']);  //uradjeno

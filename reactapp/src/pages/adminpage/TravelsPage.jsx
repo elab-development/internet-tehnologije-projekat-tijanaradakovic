@@ -44,6 +44,7 @@ useEffect(() => {
                   <th>Destination</th>
                   <th>Start date</th>
                   <th>End date</th>
+                  <th>User_Id</th>
                   <th>Details</th>
                 </tr>
               </thead>
@@ -54,6 +55,7 @@ useEffect(() => {
                 <td>{t.destination}</td>
                 <td>{t.start_date}</td>
                 <td>{t.end_date}</td>
+                <td>{t.user_id}</td>
                 <td><button type='button'>View plans</button></td>
                 
                 </tr>

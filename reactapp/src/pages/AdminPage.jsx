@@ -8,7 +8,7 @@ function AdminPage() {
             <ul className='nav-list'>
                 <li className='nav-item'><Link to= "/users">Users</Link></li>
                 <li className='nav-item'><Link to= "/travels">Travels</Link></li>
-                <li className='nav-item'><Link to= "/trips">Plans</Link></li>
+                <li className='nav-item'><Link to= "/plans">Plans</Link></li>
             </ul>
         </div>
 

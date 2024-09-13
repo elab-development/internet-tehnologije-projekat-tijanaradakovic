@@ -70,12 +70,48 @@ class UserController extends Controller
     {
         //
     }
-    public function indexUserTravel(Request $request){
+    // public function indexUserTravel(Request $request){
 
+    //     $id = $request->route('id');
+    //     $user=User::find($id);
+    //     $perPage = $request->input('per_page', 5);
+    //     $travels = TravelPlan::where('user_id', $id)->paginate($perPage);
+    //     return response()->json($travels);
+    // }
+
+    public function indexUserTravel(Request $request)
+    {
         $id = $request->route('id');
-        $user=User::find($id);
+        $user = User::find($id);
+        $startYear = $request->input('start_year');
+        $endYear = $request->input('end_year');  
+        $hasGuide = $request->input('has_guide');
         $perPage = $request->input('per_page', 5);
-        $travels = TravelPlan::where('user_id', $id)->paginate($perPage);
+        $page = $request->input('page', 1);
+        $sortOrder = $request->input('sort_order', 'asc'); 
+
+        $query = TravelPlan::where('user_id', $id);
+
+        if ($startYear) {
+            $query->whereYear('start_date', $startYear); 
+        }
+
+        if ($endYear) {
+            $query->whereYear('end_date', $endYear); 
+        }
+
+        if ($startYear && $endYear && $startYear > $endYear) {
+            return response()->json(['error' => 'Start year cannot be greater than end year.'], 400);
+        }
+
+        if (!is_null($hasGuide)) {
+            $query->where('has_guide', $hasGuide == 'true' ? 1 : 0);
+        }
+
+        $query->orderBy('destination', $sortOrder);
+        $travels = $query->paginate($perPage, ['*'], 'page', $page);
+
         return response()->json($travels);
     }
+
 }

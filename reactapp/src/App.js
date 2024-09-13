@@ -46,8 +46,8 @@ function App() {
         
 
         <Routes>
-          <Route path="/login" element={<Login addToken={addToken}/>}/>
-          <Route path="/register" element={<Register />}/>
+        <Route path="/register" element={<Register />}/>
+        <Route path="/login" element={<Login addToken={addToken}/>}/>
 
             <Route path='/' element={<NavBar links={getLinks()} token={token}></NavBar>}>
               <Route path="/home" element={<Home  />}/>

@@ -3,7 +3,6 @@ import { useState} from 'react';
 import { Link,useNavigate } from 'react-router-dom';
 import '../App.css';
 import TextField from '../components/shared/TextField';
-import NavBar from '../components/NavBar';
 import axios from 'axios';
 
 function Register() {
@@ -47,7 +46,7 @@ function Register() {
 
     return (
         <div className='login-page'>
-                  <NavBar/>
+                 
 
         <div className='login-header'>
             <h1>Create a new account!</h1>

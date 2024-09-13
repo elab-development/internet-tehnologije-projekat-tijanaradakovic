@@ -70,9 +70,12 @@ class UserController extends Controller
     {
         //
     }
-    public function indexUserTravel($id){
+    public function indexUserTravel(Request $request){
+
+        $id = $request->route('id');
         $user=User::find($id);
-        $travels= TravelPlan::where('user_id', $id)->get();
+        $perPage = $request->input('per_page', 5);
+        $travels = TravelPlan::where('user_id', $id)->paginate($perPage);
         return response()->json($travels);
     }
 }

@@ -8,38 +8,44 @@ import axios from 'axios';
 export default function TripPage() {
   const[trips, setTravels]= useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentPage,setCurrentPage]= useState(1);
-  const [perPage] = useState(5); 
-  const[errors,setError] = useState();
+  const [currentPage, setCurrentPage]= useState(1);
+  const [totalPages, setTotalPages] = useState(5);
+  const [errors,setError] = useState();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const token = localStorage.getItem("auth_token");
-      const userId = localStorage.getItem("user_id");
-
-      try {
-        const response = await axios.get("api/users/" + userId + "/travels", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log(response.data);
-        setTravels(response.data);
-      } catch (err) {
-        setError("Failed to fetch travels.");
-        
-      }
-    };
-
+    
     fetchUsers();
-  }, []);
+  }, [currentPage]);
+
+
+  const fetchUsers = async () => {
+    const token = localStorage.getItem("auth_token");
+    const userId = localStorage.getItem("user_id");
+
+    try {
+      const response = await axios.get("api/users/" + userId + "/travels?page=" + currentPage, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setTotalPages(response.data.last_page)
+      setTravels(response.data.data);
+    } catch (err) {
+      setError("Failed to fetch travels.");
+    }
+  };
+
+
   function handlePreviousPage(e){
-
+    setCurrentPage(currentPage - 1)
   }
-  
+
   function handleNextPage(e){
-
+    setCurrentPage(currentPage + 1)
   }
+
+
   const filteredDate = trips.filter(t => {
     return (
       t.destination.toLowerCase().startsWith(searchTerm)
@@ -49,13 +55,7 @@ export default function TripPage() {
       setSearchTerm(e.target.value.toLowerCase());
 
   }
- 
 
-  //const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
-
-  //const toggleSidebar = () => {
-    //setIsSidebarOpen(!isSidebarOpen); 
-  //};
 
   return (
     <>
@@ -83,11 +83,12 @@ export default function TripPage() {
 
             {/* <div className='pagination'> */}
               <button onClick={handlePreviousPage}
-              disabled={currentPage===1}
+              disabled={currentPage === 1}
               className='pagination-button'
               >Previous</button>
+
               <button onClick={handleNextPage}
-              //disabled={currentPage===1}
+              disabled={currentPage === totalPages}
               className='pagination-button'
               >Next</button>
             {/* </div> */}

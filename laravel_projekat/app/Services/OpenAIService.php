@@ -5,13 +5,13 @@ use Illuminate\Support\Facades\Http;
 
 class OpenAIService
 {
-    protected $apiKey;
+    protected $apiKey = "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";
     protected $apiUrl = "https://api.openai.com/v1/chat/completions";
 
-    public function __construct()
-    {
-        $this->$apiKey = env('OPEN_AI_API_KEY');
-    }
+    // public function __construct()
+    // {
+    //     $this->$apiKey = env('OPEN_AI_API_KEY');
+    // }
     public function generateTravelPlan($userInput)
     {
         $messages =[
@@ -23,7 +23,7 @@ class OpenAIService
 
         ];
         $response= Http::withHeaders([
-            'Authorization' => 'Bearer'.$this->apiKey,
+            'Authorization' => 'Bearer ' . $this->apiKey,
             'Content-Type' =>'application/json',
 
         ])->post($this->apiUrl,[
@@ -34,13 +34,14 @@ class OpenAIService
 
         return $response->json();
     }
-    public function createPrompt($userInput){
+    protected function createPrompt($userInput){
         $prompt = "Create detailed travel plan for user with the following details:\n";
-        $prompt .= "Destination".$userInput['destination']."\n";
-        $prompt .= "Start date".$userInput['start_date']."\n";
+        $prompt .= "Destination ".$userInput['destination']."\n";
+        $prompt .= "Start date ".$userInput['start_date']."\n";
+        $prompt .= "End date ".$userInput['end_date']."\n";
         $prompt .= "Return the travel plan in JSON format with the following structure";
-        $prompt .= "{ \"Plans\": [{\"day\": \"Day number\", \"description\": \"Plan description\", \"activity\": \"activity\" }";
+        $prompt .= "{ \"Plans\": [{\"day\": \"Day number\", \"description\": \"Plan description\", \"activity\": \"activity\" }]";
         return $prompt;
-
+        
     }
 }

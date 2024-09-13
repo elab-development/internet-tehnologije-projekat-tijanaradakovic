@@ -9,9 +9,11 @@ class TravelPlan extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'user_id',
         'destination',
         'start_date',
         'end_date',
+        'guide',
 
         
     ];

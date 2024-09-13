@@ -11,7 +11,10 @@ use Illuminate\Http\Request;
 //use App\Http\Controllers\Redirect;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
-use Http\Services\OpenAIService;
+use App\Services\OpenAIService;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\TravelPlanController; 
+
 
 
 class DailyPlanController extends Controller
@@ -27,6 +30,7 @@ class DailyPlanController extends Controller
     {
         $this->openAIService = $openAIService;
     }
+
     public function index()
     {
         $plans = DB::table('daily_plans')
@@ -110,9 +114,31 @@ class DailyPlanController extends Controller
         $plan->delete();
         return response()->json(['message'=>'Deleted plan!']);
     }
-    public function generateTravelPlan(TravelPlan $travelPlan,$usersInput)
+    public function generateTravelPlan(Request $request)
     {
-        $generetedPlan = $this->OpenAIService->generateTravelPlan($usersInput);
+        $user = auth()->user();
+        $user_id=$user->id;
+        $travel = new TravelPlanController();
+        $travel->store($request);
+        $userInput = [
+            'user_id' => "1",
+            'destination' => $request->input('destination'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'guide' => $request->input('guide'),
+        ];
+
+        $generatedPlan = $this->openAIService->generateTravelPlan($userInput);
+
+         // Provera da li postoji odgovor iz OpenAI API-a
+         if (!isset($generatedPlan['choices'][0]['message']['content'])) {
+            return response()->json(['error' => 'No valid response from OpenAI'], 500);
+        }
+    
+        // Parsiranje JSON stringa iz content polja
+        $parsedContent = json_decode($generatedPlan['choices'][0]['message']['content'], true);
+
+        return $parsedContent;
 
     }
 }

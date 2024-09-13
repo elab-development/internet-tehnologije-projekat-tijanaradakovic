@@ -49,24 +49,21 @@ class TravelPlanController extends Controller
         {
             $guideNum='0';
         }
-        $startDateInput = $request->input('start_date');
-        $endDateinput = $request->input('end_date');
+       
         
-
-        //dd($request->all());
+        //dd($id);
         $travelPlan = TravelPlan::create([
-            'user_id'=>auth()->id(),
+            'user_id'=> auth()->id(),
             'destination' => $request->input('destination'),
-            'start_date' => $startDateInput,
-            'end_date' => $endDateinput,
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
             'guide'=>$guideNum
         ]);
 
        
 
-       // $planController = new DailyPlanController();
-        //$plan= $planController->generateTravelPlan($travelPlan,$request->all());
-
+       
+        return $travelPlan;
     }
 
     /**

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth:sanctum', 'isAdmin']],function (){
     //Route::post('activities',[ActivityController::class,'store']); //uradjeno
     //Route::put('/activities/{id}',[ActivityController::class,'update']);  //uradjeno
     //Route::resource('travels',TravelPlanController::class)->only('destroy','store','update');//vratiti se na update
-    Route::delete('travels/{id}',[TravelPlanController::class,'destroy']);
+    //Route::delete('travels/{id}',[TravelPlanController::class,'destroy']);
     Route::put('travels/{id}',[TravelPlanController::class,'update']);
     //Route::post('travels',[TravelPlanController::class,'store']);
     Route::resource('activities',ActivityController::class)->only('update','store');

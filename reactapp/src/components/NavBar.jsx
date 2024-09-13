@@ -8,7 +8,6 @@ function NavBar({ links, token }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Sync token with sessionStorage
     const tokenFromStorage = sessionStorage.getItem('access_token');
     setCurrentToken(tokenFromStorage);
   }, [token]);

@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 function TravelsPage() {
 const [travels,setTravels] = useState([]);
 const [error,setError] = useState();
+const[deleted,setDeleted]= useState();
 
 useEffect(() => {
     const fetchTravels = async () => {
@@ -27,6 +28,22 @@ useEffect(() => {
     fetchTravels();
   }, []);
 
+ async function handleDelete(e, travelId){
+    console.log('travelId is: ', travelId)
+    e.preventDefault();
+    const token = localStorage.getItem('auth_token');
+    const response = await axios.delete('api/travels/' + travelId, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
+  });
+
+  setTravels(travels.filter((travel) => 
+  travel.id !== travelId 
+  ));
+  }
+
+
   return (
     <div className='container'>
          <div className='navbar'>
@@ -46,6 +63,7 @@ useEffect(() => {
                   <th>End date</th>
                   <th>User_Id</th>
                   <th>Details</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -56,7 +74,9 @@ useEffect(() => {
                 <td>{t.start_date}</td>
                 <td>{t.end_date}</td>
                 <td>{t.user_id}</td>
+                
                 <td><button type='button'>View plans</button></td>
+                <td><button type='button' onClick={(e)=>handleDelete(e,t.id)}>Delete travel</button></td>
                 
                 </tr>
                 )) : (<tr>

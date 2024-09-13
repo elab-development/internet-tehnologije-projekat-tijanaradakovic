@@ -3,9 +3,6 @@ import Trip from '../models/Trip'
 import { useState,useEffect} from 'react'
 import TextField from '../components/shared/TextField';
 import Footer from '../components/shared/Footer';
-import { FaGripLines } from "react-icons/fa";
-import SideBar from '../models/SideBar';
-import NavBar from '../components/NavBar';
 import axios from 'axios';
 
 export default function TripPage() {
@@ -39,6 +36,7 @@ export default function TripPage() {
   function handlePreviousPage(e){
 
   }
+  
   function handleNextPage(e){
 
   }
@@ -63,10 +61,7 @@ export default function TripPage() {
     <>
       <div className='pocetna-page'>
         
-        {/* <div className={`sidebar-poc ${isSidebarOpen ? 'open' : 'closed'}`}>
-          <SideBar favorites={favorites} numFav={favoritesNum}></SideBar>
-        </div>
-        <FaGripLines className="toggle-btn" onClick={toggleSidebar} style={{marginLeft:'900px'}}/> */}
+        
         <div className='search'>
           <p style ={{marginRight:'20px'}}>Search:</p>
           <TextField
@@ -78,24 +73,7 @@ export default function TripPage() {
             onChange={handleSearch}
           />
         </div>
-            {/* {filteredDate ? filteredDate.map((t,index) => 
-                trips.map(t=>
-                  <li key={t.id}>{t.name}</li>
-                )
-            ) :trips.map(t => 
-                <li key={t.id}>{t.name}</li>
-            )}
-            {filteredDate.length === 0 ? <p>Nema ponudjenih putovanja!</p>:<p></p>} */}
-                        {/* <ul>
-                  {trips.length > 0 ? (
-                    trips.map(t => (
-                      <Trip trip={{ destination: t.destination, start_date: t.start_date, end_date: t.end_date}} />
-                      
-                    ))
-                  ) : (
-                    <p>No travels found</p>
-                  )}
-                </ul> */}
+           
                 {filteredDate ? filteredDate.map(t=>
                   <Trip trip={{ destination: t.destination, start_date: t.start_date, end_date: t.end_date}} />
                 ): trips.map(t => (

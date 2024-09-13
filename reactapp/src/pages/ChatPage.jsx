@@ -5,39 +5,42 @@ import { useState } from 'react'
 import axios from 'axios';
 import DatePicker from 'react-datepicker'
 function ChatPage() {
-  const [updatedTravels,setUpdatedTravels]= useState([]);
-  const [updatedTravel,setUpdatedTravel]= useState();
-  const[travels,setTravels]= useState([]);
-  const [travel,setTravel] = useState({
+  const [updatedTravels, setUpdatedTravels]= useState([]);
+  const [updatedTravel, setUpdatedTravel]= useState();
+  const[travels, setTravels]= useState([]);
+  const [travel, setTravel] = useState({
     destination:"",
     start_date:"",
     end_date:"",
     guide:""
   });
+
  async function handleUpdate(e,p){
   e.preventDefault();
   //console.log(p);
   const token = localStorage.getItem('auth_token');
-  const response = await axios.put('api/regenerateDay',p, {
+  const response = await axios.put('api/regenerateDay', p, {
     headers: {
       'Authorization': `Bearer ${token}`,
     }
   });
+
   if (response.data && response.data.plan) {
     setUpdatedTravel(response.data.plan);
   } else {
     console.error('Plan is not available in the response');
   }
-  //setUpdatedTravel(response.data);
-  console.log(updatedTravel);
+  
+  const updatedDailyPlan = response.data.plan;
+  console.log('updatedDailyPlan ', updatedDailyPlan);
   // Ažurirajte state sa novim podacima
-   setUpdatedTravels(travels.map((travel) => 
-    travel.id === updatedTravel.id 
-  ? { ...travel, description: updatedTravel.description, activity: updatedTravel.activity }
+  setTravels(travels.map((travel) => 
+    travel.id === updatedDailyPlan.id 
+  ? { ...travel, description: updatedDailyPlan.description, activity: updatedDailyPlan.activity }
   : travel
   ));
   
-  setTravels(updatedTravels);
+  // setTravels(updatedTravels);
   
   
  }

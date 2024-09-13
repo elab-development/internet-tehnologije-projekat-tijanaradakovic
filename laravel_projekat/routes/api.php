@@ -8,11 +8,19 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\DailyPlanController; 
 use App\Http\Controllers\Auth\LoginController; 
 use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\ImageController;
+
  
 
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
+
+Route::get('/upload', function () {
+    return view('upload'); 
+});
+
+Route::post('/upload', [ImageController::class, 'upload'])->name('image.upload');
 
 
 Route::post('/gpt', [DailyPlanController::class,'generateTravelPlan']); 
@@ -29,13 +37,15 @@ Route::get('/travels/search', [TravelPlanController::class, 'search']);
 Route::get('/travels', [TravelPlanController::class, 'index']);
 Route::get('/travels/{id}', [TravelPlanController::class, 'show']);
 Route::resource('activities',ActivityController::class)->only('show','index');
+Route::post('logout',[LoginController::class,'logout']);
+
 
 Route::post('login',[LoginController::class,'login']); //uradjeno
 Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::get('/profile', function (Request $request){
         return auth()->user();
     });
-    
+    Route::get('travels/{id}/activity',[TravelPlanController::class,'showPlans']);
     Route::delete('travels/{id}',[TravelPlanController::class,'destroy']);
     Route::put('travels/{id}',[TravelPlanController::class,'update']);
     Route::post('travels',[TravelPlanController::class,'store']);
@@ -47,7 +57,6 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
 
 
 
-    Route::post('logout',[LoginController::class,'logout']);
 
 });
 Route::group(['middleware' => ['auth:sanctum', 'isAdmin']],function (){

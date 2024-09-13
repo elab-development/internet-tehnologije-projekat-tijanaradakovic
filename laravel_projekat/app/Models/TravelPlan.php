@@ -19,9 +19,9 @@ class TravelPlan extends Model
     ];
     public function daily_plans()
     {
-        return $this->hasMany(DailyPlan::class);
+        return $this->hasMany(DailyPlan::class,'travel_plan_id');
     }
-    public function users(){
+    public function user(){
         return $this->belogsTo(User::class);
     }
 }

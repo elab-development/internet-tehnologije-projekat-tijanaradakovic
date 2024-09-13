@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Activity=({activities})=>{
+  
     return (
         <>
           <div className='card-ac'>

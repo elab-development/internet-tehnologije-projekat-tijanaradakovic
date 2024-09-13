@@ -25,7 +25,7 @@ class DailyPlan extends Model
     }
     public function travel_plans()
     {
-        return $this->belongsTo(TravelPlan::class);
+        return $this->belongsTo(TravelPlan::class,'travel_plan_id');
     }
     
 }

@@ -3,6 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use App\Http\Resources\DailyPlanResource;
+use App\Http\Resources\UserResource;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TravelPlanResource extends JsonResource
@@ -20,6 +23,10 @@ class TravelPlanResource extends JsonResource
             'start_date'=>$this->start_date,
             'end_date'=>$this->end_date,
             'guide'=>$this->guide,
+            'user'=> new UserResource($this->whenLoaded('user')),
+            'daily_plans' => DailyPlanResource::collection($this->whenLoaded('daily_plans')),
+
+           
         ];
     }
 }

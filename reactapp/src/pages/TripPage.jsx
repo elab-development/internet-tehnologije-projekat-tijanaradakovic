@@ -131,10 +131,10 @@ export default function TripPage() {
         </div>
 
         {sortedTrips.length ? sortedTrips.map(t =>
-          <Trip key={t.id} trip={{ destination: t.destination, start_date: t.start_date, end_date: t.end_date }} />
+          <Trip key={t.id} trip={{id: t.id, destination: t.destination, start_date: t.start_date, end_date: t.end_date }} />
         ) : (
           trips.map(t => (
-            <Trip key={t.id} trip={{ destination: t.destination, start_date: t.start_date, end_date: t.end_date }} />
+            <Trip key={t.id} trip={{ id: t.id,destination: t.destination, start_date: t.start_date, end_date: t.end_date }} />
           ))
         )}
 

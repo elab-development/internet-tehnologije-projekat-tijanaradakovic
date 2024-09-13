@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Auth;
 use App\Models\TravelPlan;
-use App\Models\DailylPlan;
+use App\Models\DailyPlan;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use App\Http\Resources\TravelPlanResource;
 use Maatwebsite\Excel\Facades\Excel;
 use Carbon\Carbon;
 
@@ -158,4 +159,20 @@ class TravelPlanController extends Controller
 
         return response()->json($travels);
     }
+    public function showPlans($id)
+    {
+            // Find the travel plan by its ID
+        $travel = TravelPlan::with('daily_plans')->find($id);  
+        //$travel = TravelPlan::with('daily_plans')->where('id', $id)->first();
+      
+        if (!$travel) {
+            return response()->json(['message' => 'Travel plan not found'], 404);
+        }
+        
+        // Return the travel plan along with its daily plans using a resource
+        //dd($travel->daily_plans);
+        return new TravelPlanResource($travel);
+    }
+        
+    
 }

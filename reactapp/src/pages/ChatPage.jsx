@@ -3,32 +3,58 @@ import {Link} from 'react-router-dom'
 import TextField from '../components/shared/TextField';
 import { useState } from 'react'
 import axios from 'axios';
+import DatePicker from 'react-datepicker'
 function ChatPage() {
+  const [updatedTravels,setUpdatedTravels]= useState([]);
+  const [updatedTravel,setUpdatedTravel]= useState();
+  const[travels,setTravels]= useState([]);
   const [travel,setTravel] = useState({
     destination:"",
     start_date:"",
     end_date:"",
     guide:""
   });
-  const formatDate = (dateString) => {
-    const [month, day, year] = dateString.split('/');
-    return `${year}-${month}-${day}`;
-  };
-  const formattedTravel = {
-    ...travel,
-    start_date: formatDate(travel.start_date),
-    end_date: formatDate(travel.end_date),
-  };
+ async function handleUpdate(e,p){
+  e.preventDefault();
+  //console.log(p);
+  const token = localStorage.getItem('auth_token');
+  const response = await axios.put('api/regenerateDay',p, {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
+  });
+  if (response.data && response.data.plan) {
+    setUpdatedTravel(response.data.plan);
+  } else {
+    console.error('Plan is not available in the response');
+  }
+  //setUpdatedTravel(response.data);
+  console.log(updatedTravel);
+  // Ažurirajte state sa novim podacima
+   setUpdatedTravels(travels.map((travel) => 
+    travel.id === updatedTravel.id 
+  ? { ...travel, description: updatedTravel.description, activity: updatedTravel.activity }
+  : travel
+  ));
+  
+  setTravels(updatedTravels);
+  
+  
+ }
   async function handleSubmit(e){
   
     e.preventDefault();
     const token = localStorage.getItem('auth_token');
-    const response = await axios.post('api/travels',formattedTravel, {
+    
+    const response = await axios.post('api/gpt',travel, {
       headers: {
         'Authorization': `Bearer ${token}`,
       }
     });
     console.log(response);
+    setTravels(response.data.plans);
+    console.log(travels)
+
 
   }
   function handleChange(e){
@@ -39,11 +65,7 @@ function ChatPage() {
   }
   return (
     <div className='container'>
-        <div className='navbar'>
-            <ul className='nav-list'>
-                <li className='nav-item'><Link to= "/trips">My travel plans</Link></li>
-            </ul>
-        </div>
+        
         <div className='row'>
           <div className='col-md-4'>
             <form className='travel-form' onSubmit={handleSubmit}>
@@ -108,13 +130,20 @@ function ChatPage() {
                   <th>Day</th>
                   <th>Description</th>
                   <th>Activity</th>
+                  <th></th>
                   
                 </tr>
                 
               </thead>
-              <body>
-
-              </body>
+              <tbody>
+                  {travels!==null ?travels.map((p,index)=>
+                   <tr key={index}>
+                   <td>{p.day}</td>
+                   <td>{p.description}</td>
+                   <td>{p.activity}</td>
+                   <td><button type='button' onClick={(e) => handleUpdate(e,p)}>Update</button></td>
+                 </tr>): (<tr>Loading</tr>) }
+              </tbody>
             </table>
           </div>
         </div>

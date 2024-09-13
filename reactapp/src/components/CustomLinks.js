@@ -6,7 +6,7 @@ export const userLinks = [
         to: "/chatGpt",
     },
     {
-        text: "Trips",
+        text: "My Travels",
         to: "/trips",
     },
 ];
@@ -17,7 +17,7 @@ export const adminLinks = [
         to: "/chatGpt",
     },
     {
-        text: "Trips",
+        text: "My travels",
         to: "/trips",
     },
     {

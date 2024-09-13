@@ -10,8 +10,9 @@ import axios from 'axios';
 
 export default function TripPage() {
   const[trips, setTravels]= useState([]);
-  const [search,setSearch]= useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const [currentPage,setCurrentPage]= useState(1);
+  const [perPage] = useState(5); 
   const[errors,setError] = useState();
 
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function TripPage() {
             Authorization: `Bearer ${token}`,
           },
         });
-        console.log('trips ', response.data);
+        console.log(response.data);
         setTravels(response.data);
       } catch (err) {
         setError("Failed to fetch travels.");
@@ -43,11 +44,12 @@ export default function TripPage() {
   }
   const filteredDate = trips.filter(t => {
     return (
-      t.destination.toLowerCase().startsWith(search)
+      t.destination.toLowerCase().startsWith(searchTerm)
     )});
 
   function handleSearch(e){
-      setSearch(e.target.value.toLowerCase());
+      setSearchTerm(e.target.value.toLowerCase());
+
   }
  
 
@@ -60,7 +62,7 @@ export default function TripPage() {
   return (
     <>
       <div className='pocetna-page'>
-        <h2>My travels plans</h2>
+        
         {/* <div className={`sidebar-poc ${isSidebarOpen ? 'open' : 'closed'}`}>
           <SideBar favorites={favorites} numFav={favoritesNum}></SideBar>
         </div>
@@ -72,17 +74,36 @@ export default function TripPage() {
             name="search"
             id="search_id"
             placeholder='Search...'
-            value ={search}
+            value ={searchTerm}
             onChange={handleSearch}
           />
         </div>
-            {filteredDate ? filteredDate.map((t,index) => 
-                <Trip trip={t}  key ={index}/>
+            {/* {filteredDate ? filteredDate.map((t,index) => 
+                trips.map(t=>
+                  <li key={t.id}>{t.name}</li>
+                )
             ) :trips.map(t => 
-              <Trip trip={t}  key ={t.id}/>
+                <li key={t.id}>{t.name}</li>
             )}
-            {filteredDate.length === 0 ? <p>Nema ponudjenih putovanja!</p>:<p></p>}
-            <div className='pagination'>
+            {filteredDate.length === 0 ? <p>Nema ponudjenih putovanja!</p>:<p></p>} */}
+                        {/* <ul>
+                  {trips.length > 0 ? (
+                    trips.map(t => (
+                      <Trip trip={{ destination: t.destination, start_date: t.start_date, end_date: t.end_date}} />
+                      
+                    ))
+                  ) : (
+                    <p>No travels found</p>
+                  )}
+                </ul> */}
+                {filteredDate ? filteredDate.map(t=>
+                  <Trip trip={{ destination: t.destination, start_date: t.start_date, end_date: t.end_date}} />
+                ): trips.map(t => (
+                  <Trip trip={{ destination: t.destination, start_date: t.start_date, end_date: t.end_date}} />
+                  
+                ))}
+
+            {/* <div className='pagination'> */}
               <button onClick={handlePreviousPage}
               disabled={currentPage===1}
               className='pagination-button'
@@ -91,7 +112,7 @@ export default function TripPage() {
               //disabled={currentPage===1}
               className='pagination-button'
               >Next</button>
-            </div>
+            {/* </div> */}
 
         <Footer/>
       </div>

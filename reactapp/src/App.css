@@ -497,3 +497,9 @@ body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 61px;
 }
+.pagination{
+  align-items: center;
+}
+.login-form{
+  background-image: url(trips/img/slika.jpg);
+}

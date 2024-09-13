@@ -11,8 +11,10 @@ class DailyPlan extends Model
 
     protected $fillable =[
         'day',
-        'description'
+        'description',
         //'aktivnost',
+        'activity',
+        'travel_plan_id',
     ];
 
     public function activities()

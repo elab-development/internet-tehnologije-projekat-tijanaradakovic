@@ -4,11 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DailyPlan;
 use App\Models\TravelPlan;
-//use App\Models\Activity;
 use App\Models\Activity;
-
 use Illuminate\Http\Request;
-//use App\Http\Controllers\Redirect;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\Services\OpenAIService;
@@ -118,8 +115,32 @@ class DailyPlanController extends Controller
     {
         $user = auth()->user();
         $user_id=$user->id;
-        $travel = new TravelPlanController();
-        $travel->store($request);
+        $request->validate([
+            'destination'=>'required|string',
+            'start_date'=>'required|date',
+            'end_date'=>'required|date|after_or_equal:start_date',
+            'guide'=>'required|string'
+        ]);
+        if($request->input('guide')=='yes'){
+            $guideNum ='1';
+        }
+        else
+        {
+            $guideNum='0';
+        }
+       
+        
+        //dd($id);
+        $travelPlan = TravelPlan::create([
+            'user_id'=> auth()->id(),
+            'destination' => $request->input('destination'),
+            'start_date' => $request->input('start_date'),
+            'end_date' => $request->input('end_date'),
+            'guide'=>$guideNum
+        ]);
+
+       // $travel = new TravelPlanController();
+        //$travel->store($request);
         $userInput = [
             'user_id' => "1",
             'destination' => $request->input('destination'),
@@ -137,8 +158,79 @@ class DailyPlanController extends Controller
     
         // Parsiranje JSON stringa iz content polja
         $parsedContent = json_decode($generatedPlan['choices'][0]['message']['content'], true);
+         if (!isset($parsedContent['Plans']) || !is_array($parsedContent['Plans'])) {
+            return response()->json(['error' => 'No plans found in the generated plan'], 500);
+        }
+        //dd($travelPlan->id);
+        // Sačuvamo plan ishrane u bazu podataka tek kada imamo obroke
+        foreach($parsedContent['Plans'] as $plans){
+           // dd($travelPlan->id);
+            $dailyPlan=DailyPlan::create([
+                'description'=>$plans['description'],
+                'travel_plan_id'=>$travelPlan->id,
+                'activity'=>$plans['activity'],
+                'day'=>$plans['day'],
+                
+            ]);
+            $createdPlans[] = $dailyPlan;
+        }
+    
+       
+        
+    
+        // Vraćamo odgovor sa kreiranim planom i obrocima
+        return response()->json([ 'plans' => $createdPlans], 201);
+    
 
-        return $parsedContent;
 
+    }
+    public function regenerateDay(Request $request){
+        $user = auth()->user();
+        $user_id=$user->id;
+        $request->validate([
+            'day' => 'required|integer',
+            'id' => 'required|integer|exists:daily_plans,id', // Proverava da li ID postoji u tabeli
+        ]);
+        
+        $userInput=[
+            'day'=> $request->day,
+            
+        ];
+        
+       
+        $generatedPlan = $this->openAIService->regenerateTravelPlan($userInput);
+ 
+       //dd($generatedPlan);
+
+         // Provera da li postoji odgovor iz OpenAI API-a
+    if (!isset($generatedPlan['choices'][0]['message']['content'])) {
+            return response()->json(['error' => 'No valid response from OpenAI'], 500);
+    }
+    
+    //    
+    $parsedContent = json_decode($generatedPlan['choices'][0]['message']['content'], true);
+    if (!isset($parsedContent['Plans']) || !is_array($parsedContent['Plans'])) {
+        return response()->json(['error' => 'No plans found in the generated plan'], 500);
+    }
+    //dd($parsedContent);
+       // Preuzimanje plana iz parsedContent
+       $planForDay = $parsedContent['Plans'];
+        //dd($planForDay);
+       // Proverite da li $planForDay sadrži sve potrebne ključeve
+       if (!isset($planForDay['day'], $planForDay['description'], $planForDay['activity'])) {
+           return response()->json(['error' => 'Invalid plan structure'], 500);
+       }
+   
+       // Pronađite plan koji treba ažurirati na osnovu ID-a iz zahteva
+       $plan = DailyPlan::findOrFail($request->id);
+   
+       // Ažuriranje postojećeg plana sa novim podacima
+       $plan->day = $planForDay['day'];
+       $plan->description = $planForDay['description'];
+       $plan->activity = $planForDay['activity'];
+       $plan->save();
+    
+    return response()->json(['plan' => $plan], 201);
+    
     }
 }

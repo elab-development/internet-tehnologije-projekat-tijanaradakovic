@@ -7,7 +7,7 @@ use App\Http\Controllers\TravelPlanController;
 use App\Http\Controllers\ActivityController; 
 use App\Http\Controllers\DailyPlanController; 
 use App\Http\Controllers\Auth\LoginController; 
-use App\Http\Middleware\isAdmin;
+use App\Http\Middleware\IsAdmin;
  
 
 Route::get('/user', function (Request $request) {
@@ -15,6 +15,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
+Route::post('/gpt', [DailyPlanController::class,'generateTravelPlan']); 
 Route::post('/gpt', [DailyPlanController::class,'generateTravelPlan']); 
 
 Route::get('/users', [UserController::class,'index']); //uradjeno
@@ -41,6 +42,8 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::resource('activities',ActivityController::class)->only('update','store');
     Route::post('travels',[TravelPlanController::class,'store']);
     Route::post('/gpt', [DailyPlanController::class,'generateTravelPlan']); //obrisi
+    //Route::post('/gpt', [DailyPlanController::class,'generateTravelPlan']); 
+    Route::put('/regenerateDay', [DailyPlanController::class,'regenerateDay']); 
 
 
 
@@ -58,7 +61,6 @@ Route::group(['middleware' => ['auth:sanctum', 'isAdmin']],function (){
     Route::resource('activities',ActivityController::class)->only('update','store');
 
 
-    Route::post('logout',[LoginController::class,'logout']);
 
 });
 

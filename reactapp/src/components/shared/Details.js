@@ -25,6 +25,7 @@ const Details = () => {
         console.log(id);
         console.log(IDnum);
         setTravel(response.data.data);
+
       } catch (err) {
         console.error('Error fetching users:', err.response || err.message);
       }
@@ -53,6 +54,7 @@ const Details = () => {
         },
       });
       console.log("File path:", response.data.file_path);
+      console.log(travel.picture);
       setImageUrl(response.data.file_path); // Postavi URL slike
       setSuccess('Image uploaded successfully');
       setError('');

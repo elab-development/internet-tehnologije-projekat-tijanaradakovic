@@ -41,13 +41,7 @@ function UsersPage() {
 
   return (
     <div className='container'>
-      <div className='navbar'>
-        <ul className='nav-list'>
-          <li className='nav-item'><Link to="/users">Users</Link></li>
-          <li className='nav-item'><Link to="/">Travels</Link></li>
-          <li className='nav-item'><Link to="/trips">Plans</Link></li>
-        </ul>
-      </div>
+      
       {error && <p>{error}</p>} {/* Display error message */}
       {users.length === 0 && !error && <p>No users found</p>}
       <div>

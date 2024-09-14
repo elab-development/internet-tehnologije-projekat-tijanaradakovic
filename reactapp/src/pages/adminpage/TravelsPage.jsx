@@ -51,13 +51,7 @@ function handleView(e,id){
 
   return (
     <div className='container'>
-         <div className='navbar'>
-            <ul className='nav-list'>
-                <li className='nav-item'><Link to= "/users">Users</Link></li>
-                <li className='nav-item'><Link to= "/travels">Travels</Link></li>
-                <li className='nav-item'><Link to= "/trips">Plans</Link></li>
-            </ul>
-        </div>
+         
         <div className=''>
             <table className='table'>
             <thead>

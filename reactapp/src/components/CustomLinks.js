@@ -20,10 +20,7 @@ export const adminLinks = [
         text: "My travels",
         to: "/trips",
     },
-    {
-        text: "Admin Page",
-        to: "/admin",
-    },
+   
     {
         text: "Users",
         to: "/users",

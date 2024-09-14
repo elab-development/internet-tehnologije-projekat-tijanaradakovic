@@ -69,10 +69,6 @@ const Details = () => {
       <Header />
       <div className='container'>
         <div className='back-text'>
-          
-          {/* <Link to="/trips" id="back-link" style={{ color: 'white', textDecoration: 'none', backgroundColor: 'grey', padding: '0.5rem 1rem' }}>
-            Back
-          </Link> */}
         </div>
         <div className="row">
           <div className="col-md-6">

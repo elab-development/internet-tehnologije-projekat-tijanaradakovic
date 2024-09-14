@@ -34,7 +34,7 @@ export default function TripPage() {
           per_page: 5,
           start_year: startYear,
           end_year: endYear,
-          has_guide: hasGuide,
+          guide: hasGuide,
           sort_order: sortOrder
         }
       });
@@ -62,7 +62,7 @@ export default function TripPage() {
     const { name, value } = e.target;
     if (name === 'start_year') setStartYear(value);
     if (name === 'end_year') setEndYear(value);
-    if (name === 'has_guide') setHasGuide(value);
+    if (name === 'guide') setHasGuide(value);
   }
 
   function handleYearChange(e) {
@@ -115,7 +115,7 @@ export default function TripPage() {
           </label>
           <label>
             Has Guide:
-            <select name="has_guide" value={hasGuide} onChange={handleFilterChange}>
+            <select name="guide" value={hasGuide} onChange={handleFilterChange}>
               <option value="">All</option>
               <option value="true">Yes</option>
               <option value="false">No</option>

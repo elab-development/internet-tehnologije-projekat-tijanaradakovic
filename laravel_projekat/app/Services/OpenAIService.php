@@ -63,7 +63,7 @@ class OpenAIService
         $prompt .= "Start date ".$userInput['start_date']."\n";
         $prompt .= "End date ".$userInput['end_date']."\n";
         $prompt .= "Return one new plan for  for that day in JSON format with the following structure";
-        $prompt .= "{ \"Plans\": {\"day\": \"number\", \"description\": \"Plan description\", \"activity\": \"activity\" }";
+        $prompt .= "{ \"Plans\": [{\"day\": \"number\", \"description\": \"Plan description\", \"activity\": \"activity\" }]";
         return $prompt;
         
     }

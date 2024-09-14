@@ -150,7 +150,7 @@ class DailyPlanController extends Controller
         ];
 
         $generatedPlan = $this->openAIService->generateTravelPlan($userInput);
-
+        //dd($generatedPlan);
          // Provera da li postoji odgovor iz OpenAI API-a
          if (!isset($generatedPlan['choices'][0]['message']['content'])) {
             return response()->json(['error' => 'No valid response from OpenAI'], 500);
@@ -161,6 +161,7 @@ class DailyPlanController extends Controller
          if (!isset($parsedContent['Plans']) || !is_array($parsedContent['Plans'])) {
             return response()->json(['error' => 'No plans found in the generated plan'], 500);
         }
+        //dd($parsedContent);
         //dd($travelPlan->id);
         // Sačuvamo plan ishrane u bazu podataka tek kada imamo obroke
         foreach($parsedContent['Plans'] as $plans){

@@ -85,7 +85,7 @@ class UserController extends Controller
         $user = User::find($id);
         $startYear = $request->input('start_year');
         $endYear = $request->input('end_year');  
-        $hasGuide = $request->input('has_guide');
+        $hasGuide = $request->input('guide');
         $perPage = $request->input('per_page', 5);
         $page = $request->input('page', 1);
         $sortOrder = $request->input('sort_order', 'asc'); 
@@ -105,7 +105,7 @@ class UserController extends Controller
         }
 
         if (!is_null($hasGuide)) {
-            $query->where('has_guide', $hasGuide == 'true' ? 1 : 0);
+            $query->where('guide', $hasGuide == 'true' ? 1 : 0);
         }
 
         $query->orderBy('destination', $sortOrder);

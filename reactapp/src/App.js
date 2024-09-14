@@ -12,6 +12,7 @@ import ChatPage from './pages/ChatPage';
 import AdminPage from './pages/AdminPage';
 import UsersPage from './pages/adminpage/UsersPage';
 import TravelsPage from './pages/adminpage/TravelsPage';
+import DetailsForAdmin from './pages/adminpage/TravelsPage';
 import NavBar from './components/NavBar';
 import { userLinks, adminLinks, guideLinks } from './components/CustomLinks';
 import { useState, createContext, useContext } from 'react';

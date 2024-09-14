@@ -42,7 +42,6 @@ const Details = () => {
     
     const formData = new FormData();
     formData.append('image', image);
-    formData.append('id', IDnum);
 
     try {
       const token = localStorage.getItem('auth_token');
@@ -67,10 +66,9 @@ const Details = () => {
       <Header />
       <div className='container'>
         <div className='back-text'>
-          
-          {/* <Link to="/trips" id="back-link" style={{ color: 'white', textDecoration: 'none', backgroundColor: 'grey', padding: '0.5rem 1rem' }}>
+          <Link to="/travels" id="back-link" style={{ color: 'white', textDecoration: 'none', backgroundColor: 'grey', padding: '0.5rem 1rem' }}>
             Back
-          </Link> */}
+          </Link>
         </div>
         <div className="row">
           <div className="col-md-6">

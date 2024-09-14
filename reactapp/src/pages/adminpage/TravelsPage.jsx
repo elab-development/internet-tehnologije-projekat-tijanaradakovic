@@ -1,12 +1,13 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
 
 function TravelsPage() {
 const [travels,setTravels] = useState([]);
 const [error,setError] = useState();
 const[deleted,setDeleted]= useState();
+const navigate = useNavigate();
 
 useEffect(() => {
     const fetchTravels = async () => {
@@ -27,7 +28,11 @@ useEffect(() => {
 
     fetchTravels();
   }, []);
+function handleView(e,id){
+  e.preventDefault();
 
+
+}
  async function handleDelete(e, travelId){
     console.log('travelId is: ', travelId)
     e.preventDefault();
@@ -75,7 +80,8 @@ useEffect(() => {
                 <td>{t.end_date}</td>
                 <td>{t.user_id}</td>
                 
-                <td><button type='button'>View plans</button></td>
+                <td><Link to={`/details/${t.id}`}>View plans</Link>
+                </td>
                 <td><button type='button' onClick={(e)=>handleDelete(e,t.id)}>Delete travel</button></td>
                 
                 </tr>

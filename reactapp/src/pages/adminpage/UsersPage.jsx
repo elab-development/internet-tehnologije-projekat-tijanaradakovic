@@ -68,7 +68,6 @@ function UsersPage() {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{roleMap[user.role]}</td>
-                  <td><button type='button'>View travels plans</button></td>
                 </tr>
               ))
             ) : (

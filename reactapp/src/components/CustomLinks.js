@@ -28,6 +28,10 @@ export const adminLinks = [
         text: "Users",
         to: "/users",
     },
+    {
+        text: "Travels",
+        to: "/travels",
+    }
 ];
 
 export const guideLinks = [

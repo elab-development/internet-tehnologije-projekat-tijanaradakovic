@@ -16,7 +16,7 @@ Prvo, klonirajte repozitorijum na svoju lokalnu mašinu koristeći sledeću koma
 
 bash
 
-git clone https://github.com/korisnicko-ime/chatgpt-travel-planner.git
+git clone https://github.com/korisnicko-ime/internet_tehnologije_tijanaradakovic.git
 
 2. Instalacija zavisnosti
 
